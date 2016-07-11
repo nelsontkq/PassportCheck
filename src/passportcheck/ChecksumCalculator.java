@@ -20,25 +20,20 @@ public class ChecksumCalculator {
         int number = 0;
         int digit = 0;
         for(int i = 0; i < charArray.length; i++){
-            switch(i){
-                case 0:
-                case 3:
-                case 6:
-                    weight = 7;
-                    break;
-                case 1:
-                case 4:
-                case 7:
-                    weight = 3;
-                    break;
-                case 2:
-                case 5:
-                case 8:
-                    weight = 1;
-                    break;
+            if(i % 3 == 0){
+                weight = 7;
+            }
+            else if((i - 1) % 3 == 0) {
+                weight = 3;
+            }
+            else if((i - 2) % 3 == 0) {
+                weight = 1;
             }
             if(Character.isLetter(charArray[i])){
                 number = (int) charArray[i] - 45; // A = 65 in ASCII. Check digit calc requires it to be 10.
+            }
+            else if(charArray[i] == '<'){
+                number = 0;
             }
             else {
                 number = Character.getNumericValue(charArray[i]);

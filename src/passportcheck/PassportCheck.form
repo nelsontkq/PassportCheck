@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="mainPanel" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jBackButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSubmitButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="mainPanel" min="-2" pref="383" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jBackButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSubmitButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="mainPanel">
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+        <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="panelOne">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="panelOne"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel3" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLabel2" max="32767" attributes="0"/>
+                              <Component id="jLabel5" max="32767" attributes="0"/>
+                              <Component id="jLabel4" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="jCountryCodeCombo" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                              <Component id="jPassportField" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jSurnameField" max="32767" attributes="0"/>
+                          <Component id="jSurnameField1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="397" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCountryCodeCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPassportField" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSurnameField" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSurnameField1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="272" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Surname"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Given names"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Country Code:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Passport No."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jCountryCodeCombo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="250">
+                    <StringItem index="0" value="Select"/>
+                    <StringItem index="1" value="AFG"/>
+                    <StringItem index="2" value="ALB"/>
+                    <StringItem index="3" value="DZA"/>
+                    <StringItem index="4" value="ASM"/>
+                    <StringItem index="5" value="AND"/>
+                    <StringItem index="6" value="AGO"/>
+                    <StringItem index="7" value="AIA"/>
+                    <StringItem index="8" value="ATA"/>
+                    <StringItem index="9" value="ATG"/>
+                    <StringItem index="10" value="ARG"/>
+                    <StringItem index="11" value="ARM"/>
+                    <StringItem index="12" value="ABW"/>
+                    <StringItem index="13" value="AUS"/>
+                    <StringItem index="14" value="AUT"/>
+                    <StringItem index="15" value="AZE"/>
+                    <StringItem index="16" value="BHS"/>
+                    <StringItem index="17" value="BHR"/>
+                    <StringItem index="18" value="BGD"/>
+                    <StringItem index="19" value="BRB"/>
+                    <StringItem index="20" value="BLR"/>
+                    <StringItem index="21" value="BEL"/>
+                    <StringItem index="22" value="BLZ"/>
+                    <StringItem index="23" value="BEN"/>
+                    <StringItem index="24" value="BMU"/>
+                    <StringItem index="25" value="BTN"/>
+                    <StringItem index="26" value="BOL"/>
+                    <StringItem index="27" value="BIH"/>
+                    <StringItem index="28" value="BWA"/>
+                    <StringItem index="29" value="BVT"/>
+                    <StringItem index="30" value="BRA"/>
+                    <StringItem index="31" value="IOT"/>
+                    <StringItem index="32" value="BRN"/>
+                    <StringItem index="33" value="BGR"/>
+                    <StringItem index="34" value="BFA"/>
+                    <StringItem index="35" value="BDI"/>
+                    <StringItem index="36" value="KHM"/>
+                    <StringItem index="37" value="CMR"/>
+                    <StringItem index="38" value="CAN"/>
+                    <StringItem index="39" value="CPV"/>
+                    <StringItem index="40" value="CYM"/>
+                    <StringItem index="41" value="CAF"/>
+                    <StringItem index="42" value="TCD"/>
+                    <StringItem index="43" value="CHL"/>
+                    <StringItem index="44" value="CHN"/>
+                    <StringItem index="45" value="CXR"/>
+                    <StringItem index="46" value="CCK"/>
+                    <StringItem index="47" value="COL"/>
+                    <StringItem index="48" value="COM"/>
+                    <StringItem index="49" value="COG"/>
+                    <StringItem index="50" value="COK"/>
+                    <StringItem index="51" value="CRI"/>
+                    <StringItem index="52" value="CIV"/>
+                    <StringItem index="53" value="HRV"/>
+                    <StringItem index="54" value="CUB"/>
+                    <StringItem index="55" value="CYP"/>
+                    <StringItem index="56" value="CZE"/>
+                    <StringItem index="57" value="PRK"/>
+                    <StringItem index="58" value="COD"/>
+                    <StringItem index="59" value="DNK"/>
+                    <StringItem index="60" value="DJI"/>
+                    <StringItem index="61" value="DMA"/>
+                    <StringItem index="62" value="DOM"/>
+                    <StringItem index="63" value="TMP"/>
+                    <StringItem index="64" value="ECU"/>
+                    <StringItem index="65" value="EGY"/>
+                    <StringItem index="66" value="SLV"/>
+                    <StringItem index="67" value="GNQ"/>
+                    <StringItem index="68" value="ERI"/>
+                    <StringItem index="69" value="EST"/>
+                    <StringItem index="70" value="ETH"/>
+                    <StringItem index="71" value="FLK"/>
+                    <StringItem index="72" value="FRO"/>
+                    <StringItem index="73" value="FJI"/>
+                    <StringItem index="74" value="FIN"/>
+                    <StringItem index="75" value="FRA"/>
+                    <StringItem index="76" value="FXX"/>
+                    <StringItem index="77" value="GUF"/>
+                    <StringItem index="78" value="PYF"/>
+                    <StringItem index="79" value="GAB"/>
+                    <StringItem index="80" value="GMB"/>
+                    <StringItem index="81" value="GEO"/>
+                    <StringItem index="82" value="D&lt;&lt;"/>
+                    <StringItem index="83" value="GHA"/>
+                    <StringItem index="84" value="GIB"/>
+                    <StringItem index="85" value="GRC"/>
+                    <StringItem index="86" value="GRL"/>
+                    <StringItem index="87" value="GRD"/>
+                    <StringItem index="88" value="GLP"/>
+                    <StringItem index="89" value="GUM"/>
+                    <StringItem index="90" value="GTM"/>
+                    <StringItem index="91" value="GIN"/>
+                    <StringItem index="92" value="GNB"/>
+                    <StringItem index="93" value="GUY"/>
+                    <StringItem index="94" value="HTI"/>
+                    <StringItem index="95" value="HMD"/>
+                    <StringItem index="96" value="VAT"/>
+                    <StringItem index="97" value="HND"/>
+                    <StringItem index="98" value="HKG"/>
+                    <StringItem index="99" value="HUN"/>
+                    <StringItem index="100" value="ISL"/>
+                    <StringItem index="101" value="IND"/>
+                    <StringItem index="102" value="IDN"/>
+                    <StringItem index="103" value="IRN"/>
+                    <StringItem index="104" value="IRQ"/>
+                    <StringItem index="105" value="IRL"/>
+                    <StringItem index="106" value="ISR"/>
+                    <StringItem index="107" value="ITA"/>
+                    <StringItem index="108" value="JAM"/>
+                    <StringItem index="109" value="JPN"/>
+                    <StringItem index="110" value="JOR"/>
+                    <StringItem index="111" value="KAZ"/>
+                    <StringItem index="112" value="KEN"/>
+                    <StringItem index="113" value="KIR"/>
+                    <StringItem index="114" value="KWT"/>
+                    <StringItem index="115" value="KGZ"/>
+                    <StringItem index="116" value="LAO"/>
+                    <StringItem index="117" value="LVA"/>
+                    <StringItem index="118" value="LBN"/>
+                    <StringItem index="119" value="LSO"/>
+                    <StringItem index="120" value="LBR"/>
+                    <StringItem index="121" value="LBY"/>
+                    <StringItem index="122" value="LIE"/>
+                    <StringItem index="123" value="LTU"/>
+                    <StringItem index="124" value="LUX"/>
+                    <StringItem index="125" value="MDG"/>
+                    <StringItem index="126" value="MWI"/>
+                    <StringItem index="127" value="MYS"/>
+                    <StringItem index="128" value="MDV"/>
+                    <StringItem index="129" value="MLI"/>
+                    <StringItem index="130" value="MLT"/>
+                    <StringItem index="131" value="MHL"/>
+                    <StringItem index="132" value="MTQ"/>
+                    <StringItem index="133" value="MRT"/>
+                    <StringItem index="134" value="MUS"/>
+                    <StringItem index="135" value="MYT"/>
+                    <StringItem index="136" value="MEX"/>
+                    <StringItem index="137" value="FSM"/>
+                    <StringItem index="138" value="MCO"/>
+                    <StringItem index="139" value="MNG"/>
+                    <StringItem index="140" value="MSR"/>
+                    <StringItem index="141" value="MAR"/>
+                    <StringItem index="142" value="MOZ"/>
+                    <StringItem index="143" value="MMR"/>
+                    <StringItem index="144" value="NAM"/>
+                    <StringItem index="145" value="NRU"/>
+                    <StringItem index="146" value="NPL"/>
+                    <StringItem index="147" value="NLD"/>
+                    <StringItem index="148" value="ANT"/>
+                    <StringItem index="149" value="NTZ"/>
+                    <StringItem index="150" value="NCL"/>
+                    <StringItem index="151" value="NZL"/>
+                    <StringItem index="152" value="NIC"/>
+                    <StringItem index="153" value="NER"/>
+                    <StringItem index="154" value="NGA"/>
+                    <StringItem index="155" value="NIU"/>
+                    <StringItem index="156" value="NFK"/>
+                    <StringItem index="157" value="MNP"/>
+                    <StringItem index="158" value="NOR"/>
+                    <StringItem index="159" value="OMN"/>
+                    <StringItem index="160" value="PAK"/>
+                    <StringItem index="161" value="PLW"/>
+                    <StringItem index="162" value="PAN"/>
+                    <StringItem index="163" value="PNG"/>
+                    <StringItem index="164" value="PRY"/>
+                    <StringItem index="165" value="PER"/>
+                    <StringItem index="166" value="PHL"/>
+                    <StringItem index="167" value="PCN"/>
+                    <StringItem index="168" value="POL"/>
+                    <StringItem index="169" value="PRT"/>
+                    <StringItem index="170" value="PRI"/>
+                    <StringItem index="171" value="QAT"/>
+                    <StringItem index="172" value="KOR"/>
+                    <StringItem index="173" value="MDA"/>
+                    <StringItem index="174" value="REU"/>
+                    <StringItem index="175" value="ROM"/>
+                    <StringItem index="176" value="RUS"/>
+                    <StringItem index="177" value="RWA"/>
+                    <StringItem index="178" value="SHN"/>
+                    <StringItem index="179" value="KNA"/>
+                    <StringItem index="180" value="LCA"/>
+                    <StringItem index="181" value="SPM"/>
+                    <StringItem index="182" value="VCT"/>
+                    <StringItem index="183" value="WSM"/>
+                    <StringItem index="184" value="SMR"/>
+                    <StringItem index="185" value="STP"/>
+                    <StringItem index="186" value="SAU"/>
+                    <StringItem index="187" value="SEN"/>
+                    <StringItem index="188" value="SYC"/>
+                    <StringItem index="189" value="SLE"/>
+                    <StringItem index="190" value="SGP"/>
+                    <StringItem index="191" value="SVK"/>
+                    <StringItem index="192" value="SVN"/>
+                    <StringItem index="193" value="SLB"/>
+                    <StringItem index="194" value="SOM"/>
+                    <StringItem index="195" value="ZAF"/>
+                    <StringItem index="196" value="SGS"/>
+                    <StringItem index="197" value="ESP"/>
+                    <StringItem index="198" value="LKA"/>
+                    <StringItem index="199" value="SDN"/>
+                    <StringItem index="200" value="SUR"/>
+                    <StringItem index="201" value="SJM"/>
+                    <StringItem index="202" value="SWZ"/>
+                    <StringItem index="203" value="SWE"/>
+                    <StringItem index="204" value="CHE"/>
+                    <StringItem index="205" value="SYR"/>
+                    <StringItem index="206" value="TWN"/>
+                    <StringItem index="207" value="TJK"/>
+                    <StringItem index="208" value="THA"/>
+                    <StringItem index="209" value="MKD"/>
+                    <StringItem index="210" value="TGO"/>
+                    <StringItem index="211" value="TKL"/>
+                    <StringItem index="212" value="TON"/>
+                    <StringItem index="213" value="TTO"/>
+                    <StringItem index="214" value="TUN"/>
+                    <StringItem index="215" value="TUR"/>
+                    <StringItem index="216" value="TKM"/>
+                    <StringItem index="217" value="TCA"/>
+                    <StringItem index="218" value="TUV"/>
+                    <StringItem index="219" value="UGA"/>
+                    <StringItem index="220" value="UKR"/>
+                    <StringItem index="221" value="ARE"/>
+                    <StringItem index="222" value="GBR"/>
+                    <StringItem index="223" value="GBD"/>
+                    <StringItem index="224" value="GBN"/>
+                    <StringItem index="225" value="GBO"/>
+                    <StringItem index="226" value="GBP"/>
+                    <StringItem index="227" value="GBS"/>
+                    <StringItem index="228" value="TZA"/>
+                    <StringItem index="229" value="USA"/>
+                    <StringItem index="230" value="UMI"/>
+                    <StringItem index="231" value="URY"/>
+                    <StringItem index="232" value="UZB"/>
+                    <StringItem index="233" value="VUT"/>
+                    <StringItem index="234" value="VEN"/>
+                    <StringItem index="235" value="VNM"/>
+                    <StringItem index="236" value="VGB"/>
+                    <StringItem index="237" value="VIR"/>
+                    <StringItem index="238" value="WLF"/>
+                    <StringItem index="239" value="ESH"/>
+                    <StringItem index="240" value="YEM"/>
+                    <StringItem index="241" value="ZAR"/>
+                    <StringItem index="242" value="ZMB"/>
+                    <StringItem index="243" value="ZWE"/>
+                    <StringItem index="244" value="UNO"/>
+                    <StringItem index="245" value="UNA"/>
+                    <StringItem index="246" value="XXA"/>
+                    <StringItem index="247" value="XXB"/>
+                    <StringItem index="248" value="XXC"/>
+                    <StringItem index="249" value="XXX"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jPassportField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="jSurnameField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="jSurnameField1">
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="panelTwo">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="panelTwo"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="563" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="383" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="jSubmitButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Submit"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSubmitButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBackButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Back"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBackButtonActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>
