@@ -16,6 +16,9 @@ public class PassportCheck {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        ChecksumCalculator cc = new ChecksumCalculator();
+        String input = "801475005";
+        System.out.print(cc.Checksum(input));
     }
     
 }
