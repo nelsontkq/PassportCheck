@@ -20,14 +20,18 @@ public class ChecksumCalculator {
         int number = 0;
         int digit = 0;
         for(int i = 0; i < charArray.length; i++){
-            if(i % 3 == 0){
-                weight = 7;
-            }
-            else if((i - 1) % 3 == 0) {
-                weight = 3;
-            }
-            else if((i - 2) % 3 == 0) {
-                weight = 1;
+            switch (i % 3) {
+                case 0:
+                    weight = 7;
+                    break;
+                case 1:
+                    weight = 3;
+                    break;
+                case 2:
+                    weight = 1;
+                    break;
+                default:
+                    break;
             }
             if(Character.isLetter(charArray[i])){
                 number = (int) charArray[i] - 45; // A = 65 in ASCII. Check digit calc requires it to be 10.
