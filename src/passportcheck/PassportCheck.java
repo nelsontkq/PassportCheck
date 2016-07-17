@@ -6,13 +6,21 @@
 package passportcheck;
 
 import java.awt.CardLayout;
-
+import org.jdesktop.swingx.prompt.PromptSupport;
 /**
  *
  * @author ntko
  */
 public class PassportCheck extends javax.swing.JFrame {
-
+    String surname = "";
+    String givenName = "";
+    String passportNumber = "";
+    String dateOfBirth = "";
+    String nationality = "";
+    String country = "";
+    String gender = "";
+    String expiryDate = "";
+    String personalNumber = "";
     /**
      * Creates new form PassportCheck
      */
@@ -51,6 +59,8 @@ public class PassportCheck extends javax.swing.JFrame {
         jLabelGender = new javax.swing.JLabel();
         jGenderCombo = new javax.swing.JComboBox<>();
         panelTwo = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jMachineReadableZoneArea = new javax.swing.JTextArea();
         jSubmitButton = new javax.swing.JButton();
         jBackButton = new javax.swing.JButton();
 
@@ -103,7 +113,9 @@ public class PassportCheck extends javax.swing.JFrame {
 
         jDateOfBirthField.setBackground(new java.awt.Color(255, 255, 255));
         jDateOfBirthField.setForeground(new java.awt.Color(255, 255, 255));
+        jDateOfBirthField.setToolTipText("");
         jDateOfBirthField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
+        PromptSupport.setPrompt("DD/MM/YYYY", jDateOfBirthField);
 
         jLabel1.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
         jLabel1.setText("Date of birth*");
@@ -193,9 +205,9 @@ public class PassportCheck extends javax.swing.JFrame {
                     .addComponent(jGivenNameField)
                     .addComponent(jLabelGivenName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelOneLayout.createSequentialGroup()
+                .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOneLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPassportField)
@@ -235,15 +247,34 @@ public class PassportCheck extends javax.swing.JFrame {
         panelTwo.setBackground(new java.awt.Color(240, 240, 240));
         panelTwo.setForeground(new java.awt.Color(240, 240, 240));
 
+        jMachineReadableZoneArea.setColumns(20);
+        jMachineReadableZoneArea.setRows(5);
+        ChecksumCalculator cc = new ChecksumCalculator();
+        int checksumOne = cc.Checksum(passportNumber);
+        int checksumTwo = cc.Checksum(dateOfBirth);
+        int checksumThree = cc.Checksum(expiryDate);
+        int checksumFour = cc.Checksum(passportNumber + checksumOne + dateOfBirth
+            + checksumTwo + expiryDate + checksumThree + personalNumber);
+        String mrz = "P<" + nationality + surname + "<<" + givenName + "<<<<<<<<<<<<<<<<<" + "\r\n" // the last bit needs to count chars in the full first line and return the appropriate amount of <
+        + passportNumber + checksumOne + country + dateOfBirth + checksumTwo + gender + expiryDate + checksumThree + personalNumber + checksumFour;
+        jMachineReadableZoneArea.setText(mrz);
+        jScrollPane1.setViewportView(jMachineReadableZoneArea);
+
         javax.swing.GroupLayout panelTwoLayout = new javax.swing.GroupLayout(panelTwo);
         panelTwo.setLayout(panelTwoLayout);
         panelTwoLayout.setHorizontalGroup(
             panelTwoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTwoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelTwoLayout.setVerticalGroup(
             panelTwoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 313, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTwoLayout.createSequentialGroup()
+                .addContainerGap(232, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         mainPanel.add(panelTwo, "panelTwo");
@@ -295,6 +326,31 @@ public class PassportCheck extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
+        surname = jSurnameField.getText();
+        givenName = jGivenNameField.getText();
+        dateOfBirth = jDateOfBirthField.getText();
+        passportNumber = jPassportField.getText();
+        int genderIndex = jGenderCombo.getSelectedIndex();
+        switch (genderIndex) {
+            case 1:
+                gender = "M";
+                break;
+            case 2:
+                gender = "F";
+                break;
+            default:
+                gender = "ERROR";
+                break;
+        }
+        expiryDate = jExpiryField.getText();
+        personalNumber = jPersonalNumberField.getText();
+        int nationalityIndex = jNationalityCombo.getSelectedIndex();
+        int countryIndex = jCountryCombo.getSelectedIndex();
+        CountryCode cc = new CountryCode();
+        nationality = cc.toCode(nationalityIndex);
+        country = cc.toCode(countryIndex);
+        
+        
         CardLayout card = (CardLayout)mainPanel.getLayout();
         card.show(mainPanel, "panelTwo");
         jBackButton.setEnabled(true);
@@ -358,9 +414,11 @@ public class PassportCheck extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNationality;
     private javax.swing.JLabel jLabelPassportNo;
     private javax.swing.JLabel jLabelSurname;
+    private javax.swing.JTextArea jMachineReadableZoneArea;
     private javax.swing.JComboBox<String> jNationalityCombo;
     private javax.swing.JTextField jPassportField;
     private javax.swing.JTextField jPersonalNumberField;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jSubmitButton;
     private javax.swing.JTextField jSurnameField;
     private javax.swing.JPanel mainPanel;

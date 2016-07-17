@@ -21,7 +21,8 @@ public class TestMain {
      */
     public static void main(String[] args) {
         ChecksumCalculator cc = new ChecksumCalculator();
-        System.out.print(cc.Checksum("passport number"));
+        String passportNumber = "12345678";
+        System.out.print(cc.Checksum(passportNumber));
     }
     
 }
