@@ -98,7 +98,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -117,27 +117,28 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jPersonalNumberField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jDateOfBirthField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jNationalityCombo" alignment="0" pref="210" max="32767" attributes="0"/>
+                                  <Component id="jNationalityCombo" alignment="0" pref="199" max="32767" attributes="0"/>
                                   <Component id="jGenderCombo" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jDateOfBirthField" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                                       <Component id="jLabelPassportNo" min="-2" pref="79" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                      <Component id="jLabelExpiry" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                                      <Component id="jLabelCountry" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabelExpiry" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                                          <Component id="jLabelCountry" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jPassportField" max="32767" attributes="0"/>
-                                  <Component id="jCountryCombo" max="32767" attributes="0"/>
-                                  <Component id="jExpiryField" alignment="0" pref="191" max="32767" attributes="0"/>
+                                  <Component id="jCountryCombo" pref="191" max="32767" attributes="0"/>
+                                  <Component id="jExpiryField" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -160,19 +161,14 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jLabel2" min="-2" pref="19" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="jLabel1" alignment="3" max="32767" attributes="0"/>
+                              <Component id="jDateOfBirthField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jPassportField" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabelPassportNo" min="-2" pref="19" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                              <Component id="jDateOfBirthField" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -186,25 +182,20 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jExpiryField" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jLabelGender" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jGenderCombo" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabelExpiry" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jExpiryField" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabelCountry2" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPersonalNumberField" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jLabelCountry2" max="32767" attributes="0"/>
+                          <Component id="jPersonalNumberField" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -274,60 +265,8 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder>
-                      <Color PropertyName="color" blue="7a" green="7a" red="7a" type="rgb"/>
-                    </LineBorder>
-                  </Border>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jSurnameField">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder>
-                      <Color PropertyName="color" blue="7a" green="7a" red="7a" type="rgb"/>
-                    </LineBorder>
-                  </Border>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jGivenNameField">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder>
-                      <Color PropertyName="color" blue="7a" green="7a" red="7a" type="rgb"/>
-                    </LineBorder>
-                  </Border>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jDateOfBirthField">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder>
@@ -337,7 +276,47 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="PromptSupport.setPrompt(&quot;DD/MM/YYYY&quot;, jDateOfBirthField);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jPassportField.getDocument().addDocumentListener(new DocumentListener() {&#xa;  public void changedUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;&#xa;  public void changed() {&#xa;     if (jPassportField.getText().equals(&quot;&quot;)){&#xa;       jSubmitButton.setEnabled(false);&#xa;     }&#xa;     else {&#xa;       jSubmitButton.setEnabled(true);&#xa;    }&#xa;&#xa;  }&#xa;});"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jSurnameField">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="7a" green="7a" red="7a" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jSurnameField.getDocument().addDocumentListener(new DocumentListener() {&#xa;  public void changedUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;&#xa;  public void changed() {&#xa;     if (jSurnameField.getText().equals(&quot;&quot;)){&#xa;       jSubmitButton.setEnabled(false);&#xa;     }&#xa;     else {&#xa;       jSubmitButton.setEnabled(true);&#xa;    }&#xa;&#xa;  }&#xa;});"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jGivenNameField">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="7a" green="7a" red="7a" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jGivenNameField.getDocument().addDocumentListener(new DocumentListener() {&#xa;  public void changedUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;&#xa;  public void changed() {&#xa;     if (jGivenNameField.getText().equals(&quot;&quot;)){&#xa;       jSubmitButton.setEnabled(false);&#xa;     }&#xa;     else {&#xa;       jSubmitButton.setEnabled(true);&#xa;    }&#xa;&#xa;  }&#xa;});"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -352,14 +331,6 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[81, 15]"/>
                 </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="12" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="DD/MM/YYYY"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="jNationalityCombo">
@@ -648,7 +619,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -658,6 +629,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jPersonalNumberField.getDocument().addDocumentListener(new DocumentListener() {&#xa;  public void changedUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;&#xa;  public void changed() {&#xa;     if (jPersonalNumberField.getText().equals(&quot;&quot;)){&#xa;       jSubmitButton.setEnabled(false);&#xa;     }&#xa;     else {&#xa;       jSubmitButton.setEnabled(true);&#xa;    }&#xa;&#xa;  }&#xa;});"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelExpiry">
               <Properties>
@@ -665,23 +639,6 @@
                   <Font name="Ebrima" size="12" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Expiry date*"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jExpiryField">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder>
-                      <Color PropertyName="color" blue="7a" green="7a" red="7a" type="rgb"/>
-                    </LineBorder>
-                  </Border>
-                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelGender">
@@ -707,6 +664,38 @@
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="jExpiryField">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="PromptSupport.setPrompt(&quot;DD/MM/YYYY&quot;, jExpiryField);&#xa;&#xa;jExpiryField.getDocument().addDocumentListener(new DocumentListener() {&#xa;  public void changedUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;&#xa;  public void changed() {&#xa;     if (jExpiryField.getText().equals(&quot;&quot;)){&#xa;       jSubmitButton.setEnabled(false);&#xa;     }&#xa;     else {&#xa;       jSubmitButton.setEnabled(true);&#xa;    }&#xa;&#xa;  }&#xa;});"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="jDateOfBirthField">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="PromptSupport.setPrompt(&quot;DD/MM/YYYY&quot;, jDateOfBirthField);&#xa;&#xa;jDateOfBirthField.getDocument().addDocumentListener(new DocumentListener() {&#xa;  public void changedUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;&#xa;  public void changed() {&#xa;     if (jDateOfBirthField.getText().equals(&quot;&quot;)){&#xa;       jSubmitButton.setEnabled(false);&#xa;     }&#xa;     else {&#xa;       jSubmitButton.setEnabled(true);&#xa;    }&#xa;&#xa;  }&#xa;});"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -756,11 +745,9 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="jMachineReadableZoneArea">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
-                    <Property name="rows" type="int" value="5" postCode="ChecksumCalculator cc = new ChecksumCalculator();&#xa;int checksumOne = cc.Checksum(passportNumber);&#xa;int checksumTwo = cc.Checksum(dateOfBirth);&#xa;int checksumThree = cc.Checksum(expiryDate);&#xa;int checksumFour = cc.Checksum(passportNumber + checksumOne + dateOfBirth&#xa;                    + checksumTwo + expiryDate + checksumThree + personalNumber);&#xa;String mrz = &quot;P&lt;&quot; + nationality + surname + &quot;&lt;&lt;&quot; + givenName + &quot;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot; + &quot;\r\n&quot; // the last bit needs to count chars in the full first line and return the appropriate amount of &lt;&#xa;            + passportNumber + checksumOne + country + dateOfBirth + checksumTwo + gender + expiryDate + checksumThree + personalNumber + checksumFour;"/>
-                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="mrz" type="code"/>
-                    </Property>
+                    <Property name="rows" type="int" value="5"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -777,6 +764,7 @@
             <MatteColorBorder/>
           </Border>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSubmitButtonActionPerformed"/>
