@@ -4,8 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/ntko/Documents/NetBeansProjects/PassportCheck/src/passportcheck/ChecksumCalculator.java</file>
-            <file>file:/C:/Users/ntko/Documents/NetBeansProjects/PassportCheck/src/passportcheck/CountryCode.java</file>
             <file>file:/C:/Users/ntko/Documents/NetBeansProjects/PassportCheck/src/passportcheck/PassportCheck.java</file>
+            <file>file:/C:/Users/ntko/Documents/NetBeansProjects/PassportCheck/src/passportcheck/DocumentSizeFilter.java</file>
             <file>file:/C:/Users/ntko/Documents/NetBeansProjects/PassportCheck/test/TestMain.java</file>
         </group>
     </open-files>

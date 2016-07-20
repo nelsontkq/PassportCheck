@@ -6,6 +6,7 @@
 package passportcheck;
 
 import java.awt.CardLayout;
+import java.awt.Toolkit;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
 import org.jdesktop.swingx.prompt.PromptSupport;
 /**
  *
@@ -29,7 +35,6 @@ public class PassportCheck extends javax.swing.JFrame {
     String gender = "";
     String expiryDate = "";
     String personalNumber = "";
-    String mrz = "";
     /**
      * Creates new form PassportCheck
      */
@@ -47,8 +52,8 @@ public class PassportCheck extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        panelOne = new javax.swing.JPanel();
-        jLabelSurname = new javax.swing.JLabel();
+        panelCandidateInput = new javax.swing.JPanel();
+        surnameLabel = new javax.swing.JLabel();
         jLabelGivenName = new javax.swing.JLabel();
         jLabelCountry = new javax.swing.JLabel();
         jLabelPassportNo = new javax.swing.JLabel();
@@ -66,14 +71,27 @@ public class PassportCheck extends javax.swing.JFrame {
         jGenderCombo = new javax.swing.JComboBox<>();
         jExpiryField = new javax.swing.JFormattedTextField();
         jDateOfBirthField = new javax.swing.JFormattedTextField();
-        panelTwo = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jMachineReadableZoneArea = new javax.swing.JTextArea();
+        panelResultsPage = new javax.swing.JPanel();
+        panelPassportNumber = new javax.swing.JPanel();
+        mrzLineOne = new javax.swing.JLabel();
+        mrzPassportNumber = new javax.swing.JLabel();
+        mrzChecksumOne = new javax.swing.JLabel();
+        mrzCountry = new javax.swing.JLabel();
+        mrzDateOfBirth = new javax.swing.JLabel();
+        mrzChecksumTwo = new javax.swing.JLabel();
+        mrzGender = new javax.swing.JLabel();
+        mrzExpiryDate = new javax.swing.JLabel();
+        mrzChecksumThree = new javax.swing.JLabel();
+        mrzPersonalNumber = new javax.swing.JLabel();
+        mrzChecksumFour = new javax.swing.JLabel();
+        mrzChecksumFive = new javax.swing.JLabel();
+        panelButtonBar = new javax.swing.JPanel();
+        jFinishButton = new javax.swing.JButton();
         jSubmitButton = new javax.swing.JButton();
         jBackButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(240, 240, 240));
+        setBackground(new java.awt.Color(0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(java.awt.Color.white);
         setMinimumSize(new java.awt.Dimension(655, 355));
@@ -84,16 +102,16 @@ public class PassportCheck extends javax.swing.JFrame {
         mainPanel.setForeground(new java.awt.Color(240, 240, 240));
         mainPanel.setLayout(new java.awt.CardLayout());
 
-        panelOne.setBackground(new java.awt.Color(240, 240, 240));
-        panelOne.setForeground(new java.awt.Color(240, 240, 240));
+        panelCandidateInput.setBackground(new java.awt.Color(255, 255, 255));
+        panelCandidateInput.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabelSurname.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
-        jLabelSurname.setText("Surname*");
-        jLabelSurname.setMaximumSize(new java.awt.Dimension(81, 15));
-        jLabelSurname.setMinimumSize(new java.awt.Dimension(81, 15));
+        surnameLabel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        surnameLabel.setText("Surname");
+        surnameLabel.setMaximumSize(new java.awt.Dimension(81, 15));
+        surnameLabel.setMinimumSize(new java.awt.Dimension(81, 15));
 
         jLabelGivenName.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
-        jLabelGivenName.setText("Given names*");
+        jLabelGivenName.setText("Given names");
         jLabelGivenName.setMaximumSize(new java.awt.Dimension(81, 15));
         jLabelGivenName.setMinimumSize(new java.awt.Dimension(81, 15));
 
@@ -109,6 +127,7 @@ public class PassportCheck extends javax.swing.JFrame {
 
         jPassportField.setBackground(new java.awt.Color(255, 255, 255));
         jPassportField.setForeground(new java.awt.Color(0, 0, 0));
+        jPassportField.setText("12345678");
         jPassportField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
         jPassportField.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
@@ -134,6 +153,7 @@ public class PassportCheck extends javax.swing.JFrame {
 
         jSurnameField.setBackground(new java.awt.Color(255, 255, 255));
         jSurnameField.setForeground(new java.awt.Color(0, 0, 0));
+        jSurnameField.setText("Testerson");
         jSurnameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
         jSurnameField.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
@@ -149,9 +169,11 @@ public class PassportCheck extends javax.swing.JFrame {
             public void changed() {
                 if (jSurnameField.getText().equals("")){
                     jSubmitButton.setEnabled(false);
+                    surnameLabel.setText("Surname*");
                 }
                 else {
                     jSubmitButton.setEnabled(true);
+                    surnameLabel.setText("Surname");
                 }
 
             }
@@ -159,6 +181,7 @@ public class PassportCheck extends javax.swing.JFrame {
 
         jGivenNameField.setBackground(new java.awt.Color(255, 255, 255));
         jGivenNameField.setForeground(new java.awt.Color(0, 0, 0));
+        jGivenNameField.setText("Testy McTesting");
         jGivenNameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
         jGivenNameField.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
@@ -198,8 +221,40 @@ public class PassportCheck extends javax.swing.JFrame {
         jLabelCountry2.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
         jLabelCountry2.setText("Personal number*");
 
+        AbstractDocument document = (AbstractDocument) jPersonalNumberField.getDocument();
+        final int maxCharacters = 16;
+        document.setDocumentFilter(new DocumentFilter() {
+            public void replace(FilterBypass fb, int offs, int length,
+                String str, AttributeSet a) throws BadLocationException {
+
+                String text = fb.getDocument().getText(0,
+                    fb.getDocument().getLength());
+                text += str;
+                if ((fb.getDocument().getLength() + str.length() - length) <= maxCharacters
+                    && text.matches("^[0-9]+[.]?[0-9]{0,1}$")) {
+                    super.replace(fb, offs, length, str, a);
+                } else {
+                    Toolkit.getDefaultToolkit().beep();
+                }
+            }
+
+            public void insertString(FilterBypass fb, int offs, String str,
+                AttributeSet a) throws BadLocationException {
+
+                String text = fb.getDocument().getText(0,
+                    fb.getDocument().getLength());
+                text += str;
+                if ((fb.getDocument().getLength() + str.length()) <= maxCharacters
+                    && text.matches("^[0-9]+[.]?[0-9]{0,1}$")) {
+                    super.insertString(fb, offs, str, a);
+                } else {
+                    Toolkit.getDefaultToolkit().beep();
+                }
+            }
+        });
         jPersonalNumberField.setBackground(new java.awt.Color(255, 255, 255));
         jPersonalNumberField.setForeground(new java.awt.Color(0, 0, 0));
+        jPersonalNumberField.setText("<<<<<<<<<<<<<<<<<");
         jPersonalNumberField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
         jPersonalNumberField.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
@@ -211,7 +266,6 @@ public class PassportCheck extends javax.swing.JFrame {
             public void insertUpdate(DocumentEvent e) {
                 changed();
             }
-
             public void changed() {
                 if (jPersonalNumberField.getText().equals("")){
                     jSubmitButton.setEnabled(false);
@@ -235,6 +289,8 @@ public class PassportCheck extends javax.swing.JFrame {
         jExpiryField.setBackground(new java.awt.Color(255, 255, 255));
         jExpiryField.setForeground(new java.awt.Color(0, 0, 0));
         jExpiryField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        jExpiryField.setText("20/02/2020");
+        jExpiryField.setCaretColor(new java.awt.Color(255, 255, 255));
         PromptSupport.setPrompt("DD/MM/YYYY", jExpiryField);
 
         jExpiryField.getDocument().addDocumentListener(new DocumentListener() {
@@ -262,6 +318,8 @@ public class PassportCheck extends javax.swing.JFrame {
         jDateOfBirthField.setBackground(new java.awt.Color(255, 255, 255));
         jDateOfBirthField.setForeground(new java.awt.Color(0, 0, 0));
         jDateOfBirthField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        jDateOfBirthField.setText("01/01/1991");
+        jDateOfBirthField.setCaretColor(new java.awt.Color(255, 255, 255));
         PromptSupport.setPrompt("DD/MM/YYYY", jDateOfBirthField);
 
         jDateOfBirthField.getDocument().addDocumentListener(new DocumentListener() {
@@ -286,119 +344,225 @@ public class PassportCheck extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panelOneLayout = new javax.swing.GroupLayout(panelOne);
-        panelOne.setLayout(panelOneLayout);
-        panelOneLayout.setHorizontalGroup(
-            panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelOneLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelCandidateInputLayout = new javax.swing.GroupLayout(panelCandidateInput);
+        panelCandidateInput.setLayout(panelCandidateInputLayout);
+        panelCandidateInputLayout.setHorizontalGroup(
+            panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCandidateInputLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                         .addComponent(jLabelGivenName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelSurname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(surnameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabelNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelGender, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCountry2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jGivenNameField)
                     .addComponent(jSurnameField)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOneLayout.createSequentialGroup()
-                        .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCandidateInputLayout.createSequentialGroup()
+                        .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPersonalNumberField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jNationalityCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 199, Short.MAX_VALUE)
+                            .addComponent(jNationalityCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 330, Short.MAX_VALUE)
                             .addComponent(jGenderCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDateOfBirthField, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelOneLayout.createSequentialGroup()
+                        .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelCandidateInputLayout.createSequentialGroup()
                                 .addGap(88, 88, 88)
                                 .addComponent(jLabelPassportNo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOneLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCandidateInputLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelExpiry, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabelCountry, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(23, 23, 23)
-                        .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPassportField)
                             .addComponent(jCountryCombo, 0, 191, Short.MAX_VALUE)
                             .addComponent(jExpiryField))))
                 .addContainerGap())
         );
-        panelOneLayout.setVerticalGroup(
-            panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelOneLayout.createSequentialGroup()
+        panelCandidateInputLayout.setVerticalGroup(
+            panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCandidateInputLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSurnameField)
-                    .addComponent(jLabelSurname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(surnameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jGivenNameField)
                     .addComponent(jLabelGivenName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jDateOfBirthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPassportField)
-                    .addGroup(panelOneLayout.createSequentialGroup()
+                    .addGroup(panelCandidateInputLayout.createSequentialGroup()
                         .addComponent(jLabelPassportNo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelNationality, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                         .addComponent(jLabelCountry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCountryCombo)
                         .addComponent(jNationalityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelOneLayout.createSequentialGroup()
+                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCandidateInputLayout.createSequentialGroup()
                         .addComponent(jLabelGender)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jGenderCombo)
                     .addComponent(jLabelExpiry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jExpiryField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelCountry2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPersonalNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(210, 210, 210))
+                .addGap(318, 318, 318))
         );
 
-        mainPanel.add(panelOne, "panelOne");
+        mainPanel.add(panelCandidateInput, "panelOne");
 
-        panelTwo.setBackground(new java.awt.Color(240, 240, 240));
-        panelTwo.setForeground(new java.awt.Color(240, 240, 240));
+        panelResultsPage.setBackground(new java.awt.Color(240, 240, 240));
+        panelResultsPage.setForeground(new java.awt.Color(240, 240, 240));
 
-        jMachineReadableZoneArea.setEditable(false);
-        jMachineReadableZoneArea.setColumns(20);
-        jMachineReadableZoneArea.setRows(5);
-        jScrollPane1.setViewportView(jMachineReadableZoneArea);
+        panelPassportNumber.setBackground(new java.awt.Color(240, 240, 240));
 
-        javax.swing.GroupLayout panelTwoLayout = new javax.swing.GroupLayout(panelTwo);
-        panelTwo.setLayout(panelTwoLayout);
-        panelTwoLayout.setHorizontalGroup(
-            panelTwoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTwoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+        mrzLineOne.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzLineOne.setForeground(new java.awt.Color(0, 0, 0));
+        mrzLineOne.setText("P<GBRTESTERSON<<TESTY<MCTESTING<<<<<<<<<<<<<");
+        mrzLineOne.setFocusable(false);
+        mrzLineOne.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        mrzPassportNumber.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzPassportNumber.setForeground(new java.awt.Color(0, 0, 0));
+        mrzPassportNumber.setText("123456789");
+
+        mrzChecksumOne.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzChecksumOne.setForeground(new java.awt.Color(0, 0, 0));
+        mrzChecksumOne.setText("1");
+
+        mrzCountry.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzCountry.setForeground(new java.awt.Color(0, 0, 0));
+        mrzCountry.setText("GBR");
+
+        mrzDateOfBirth.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzDateOfBirth.setForeground(new java.awt.Color(0, 0, 0));
+        mrzDateOfBirth.setText("840101");
+
+        mrzChecksumTwo.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzChecksumTwo.setForeground(new java.awt.Color(0, 0, 0));
+        mrzChecksumTwo.setText("2");
+
+        mrzGender.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzGender.setForeground(new java.awt.Color(0, 0, 0));
+        mrzGender.setText("M");
+
+        mrzExpiryDate.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzExpiryDate.setForeground(new java.awt.Color(0, 0, 0));
+        mrzExpiryDate.setText("200101");
+
+        mrzChecksumThree.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzChecksumThree.setForeground(new java.awt.Color(0, 0, 0));
+        mrzChecksumThree.setText("3");
+
+        mrzPersonalNumber.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzPersonalNumber.setForeground(new java.awt.Color(0, 0, 0));
+        mrzPersonalNumber.setText("<<<<<<<<<<<<<<");
+
+        mrzChecksumFour.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzChecksumFour.setForeground(new java.awt.Color(0, 0, 0));
+        mrzChecksumFour.setText("0");
+
+        mrzChecksumFive.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        mrzChecksumFive.setForeground(new java.awt.Color(0, 0, 0));
+        mrzChecksumFive.setText("0");
+
+        javax.swing.GroupLayout panelPassportNumberLayout = new javax.swing.GroupLayout(panelPassportNumber);
+        panelPassportNumber.setLayout(panelPassportNumberLayout);
+        panelPassportNumberLayout.setHorizontalGroup(
+            panelPassportNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mrzLineOne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelPassportNumberLayout.createSequentialGroup()
+                .addComponent(mrzPassportNumber)
+                .addGap(0, 0, 0)
+                .addComponent(mrzChecksumOne)
+                .addGap(0, 0, 0)
+                .addComponent(mrzCountry)
+                .addGap(0, 0, 0)
+                .addComponent(mrzDateOfBirth)
+                .addGap(0, 0, 0)
+                .addComponent(mrzChecksumTwo)
+                .addGap(0, 0, 0)
+                .addComponent(mrzGender)
+                .addGap(0, 0, 0)
+                .addComponent(mrzExpiryDate)
+                .addGap(0, 0, 0)
+                .addComponent(mrzChecksumThree)
+                .addGap(0, 0, 0)
+                .addComponent(mrzPersonalNumber)
+                .addGap(0, 0, 0)
+                .addComponent(mrzChecksumFour)
+                .addGap(0, 0, 0)
+                .addComponent(mrzChecksumFive)
+                .addGap(0, 0, 0))
+        );
+        panelPassportNumberLayout.setVerticalGroup(
+            panelPassportNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPassportNumberLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(mrzLineOne, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(panelPassportNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mrzPassportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mrzChecksumOne, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mrzCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mrzDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mrzChecksumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mrzGender, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mrzExpiryDate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mrzChecksumThree, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mrzPersonalNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mrzChecksumFour, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mrzChecksumFive, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0))
+        );
+
+        javax.swing.GroupLayout panelResultsPageLayout = new javax.swing.GroupLayout(panelResultsPage);
+        panelResultsPage.setLayout(panelResultsPageLayout);
+        panelResultsPageLayout.setHorizontalGroup(
+            panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelResultsPageLayout.createSequentialGroup()
+                .addGap(221, 221, 221)
+                .addComponent(panelPassportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
+        panelResultsPageLayout.setVerticalGroup(
+            panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResultsPageLayout.createSequentialGroup()
+                .addContainerGap(233, Short.MAX_VALUE)
+                .addComponent(panelPassportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        panelTwoLayout.setVerticalGroup(
-            panelTwoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTwoLayout.createSequentialGroup()
-                .addContainerGap(232, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
 
-        mainPanel.add(panelTwo, "panelTwo");
+        mainPanel.add(panelResultsPage, "panelTwo");
+
+        jFinishButton.setText("Finish");
+        jFinishButton.setBorder(null);
+        jFinishButton.setEnabled(false);
+        jFinishButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFinishButtonActionPerformed(evt);
+            }
+        });
 
         jSubmitButton.setText("Submit");
-        jSubmitButton.setBorder(new javax.swing.border.MatteBorder(null));
+        jSubmitButton.setBorder(null);
         jSubmitButton.setEnabled(false);
         jSubmitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,7 +571,7 @@ public class PassportCheck extends javax.swing.JFrame {
         });
 
         jBackButton.setText("Back");
-        jBackButton.setBorder(new javax.swing.border.MatteBorder(null));
+        jBackButton.setBorder(null);
         jBackButton.setEnabled(false);
         jBackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -415,27 +579,43 @@ public class PassportCheck extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout panelButtonBarLayout = new javax.swing.GroupLayout(panelButtonBar);
+        panelButtonBar.setLayout(panelButtonBarLayout);
+        panelButtonBarLayout.setHorizontalGroup(
+            panelButtonBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelButtonBarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFinishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
+        );
+        panelButtonBarLayout.setVerticalGroup(
+            panelButtonBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelButtonBarLayout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addGroup(panelButtonBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSubmitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(jFinishButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(panelButtonBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBackButton, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                    .addComponent(jSubmitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(panelButtonBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanel.getAccessibleContext().setAccessibleName("");
@@ -484,23 +664,67 @@ public class PassportCheck extends javax.swing.JFrame {
             
             boolean ukCitizen = nationalityIndex == 221; // 221 = UK citizen. Code is always <<<<<<<<<<<<<0 or equal to 0
             if(ukCitizen){
-                personalNumber = "<<<<<<<<<<<<<0";
+                personalNumber = "<<<<<<<<<<<<<<";
             }
- 
+            StringBuilder pn = new StringBuilder("123456789qwert<<");
+            if(pn.length() == 16){
+                pn.delete(15, 16);
+            }
+            personalNumber = pn.toString();
+            String firstLine = "P<" + nationality + surname + "<<" + givenName;
+            StringBuilder sb = new StringBuilder(firstLine);
+            for(int i =0; i < sb.length(); i++){
+                if(sb.charAt(i) == 'æ' || sb.charAt(i) == 'Æ') {
+                    sb.setCharAt(i, 'A');
+                    sb.insert(i, 'E');
+                }
+                if(sb.charAt(i) == 'ø' || sb.charAt(i) == 'Ø' || sb.charAt(i) == 'œ'|| sb.charAt(i) == 'Œ' ) {
+                    sb.setCharAt(i, 'O');
+                    sb.insert(i, 'E');
+                }
+                if(sb.charAt(i) == 'ß') {
+                    sb.setCharAt(i, 'S');
+                    sb.insert(i, 'S');
+                }
+                if(sb.charAt(i) == 'þ' || sb.charAt(i) == 'Þ') {
+                    sb.setCharAt(i, 'T');
+                    sb.insert(i, 'H');
+                }
+                if(!Character.isDigit(sb.charAt(i)) && !Character.isLetter(sb.charAt(i))) {
+                    sb.setCharAt(i, '<');
+                }
+            }
+            int remainingChars = 44-sb.length();
+            if(sb.length() > 44){
+                sb.delete(45, sb.length());
+            }
+            else {
+                for(int i = 0; i < remainingChars; i++) {
+                    sb.append('<');
+                }
+            }
             ChecksumCalculator cc = new ChecksumCalculator();
             int checksumOne = cc.Checksum(passportNumber);
             int checksumTwo = cc.Checksum(dateOfBirth);
             int checksumThree = cc.Checksum(expiryDate);
-            int checksumFour = cc.Checksum(passportNumber + checksumOne + dateOfBirth
+            int checksumFour = cc.Checksum(personalNumber);
+            int checksumFive = cc.Checksum(passportNumber + checksumOne + dateOfBirth
                                 + checksumTwo + expiryDate + checksumThree + personalNumber);
-            String firstLine = "P<" + nationality + surname + "<<" + givenName;
-            String chevronFill = "";
-            for(int i = 0; i < 44 - firstLine.toCharArray().length; i++) {
-                chevronFill += "<";
-            }
-            mrz = firstLine + chevronFill + "\r\n" +
-                    passportNumber + checksumOne + country + dateOfBirth + checksumTwo + gender + expiryDate + checksumThree + personalNumber + checksumFour;
-            jMachineReadableZoneArea.setText(mrz);
+            
+            mrzLineOne.setText(sb.toString().toUpperCase());
+            mrzPassportNumber.setText(passportNumber);
+            mrzChecksumOne.setText(Integer.toString(checksumOne));
+            mrzCountry.setText(country);
+            mrzDateOfBirth.setText(dateOfBirth);
+            mrzChecksumTwo.setText(Integer.toString(checksumTwo));
+            mrzGender.setText(gender);
+            mrzExpiryDate.setText(expiryDate);
+            mrzChecksumThree.setText(Integer.toString(checksumThree));
+            mrzPersonalNumber.setText(personalNumber);
+            mrzChecksumFour.setText(Integer.toString(checksumFour));
+            mrzChecksumFive.setText(Integer.toString(checksumFive));
+            
+
             CardLayout card = (CardLayout)mainPanel.getLayout();
             card.show(mainPanel, "panelTwo");
             jBackButton.setEnabled(true);
@@ -514,6 +738,10 @@ public class PassportCheck extends javax.swing.JFrame {
         card.show(mainPanel, "panelOne");
         jBackButton.setEnabled(false);
     }//GEN-LAST:event_jBackButtonActionPerformed
+
+    private void jFinishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFinishButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFinishButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -555,6 +783,7 @@ public class PassportCheck extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCountryCombo;
     private javax.swing.JFormattedTextField jDateOfBirthField;
     private javax.swing.JFormattedTextField jExpiryField;
+    private javax.swing.JButton jFinishButton;
     private javax.swing.JComboBox<String> jGenderCombo;
     private javax.swing.JTextField jGivenNameField;
     private javax.swing.JLabel jLabel1;
@@ -565,16 +794,28 @@ public class PassportCheck extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelGivenName;
     private javax.swing.JLabel jLabelNationality;
     private javax.swing.JLabel jLabelPassportNo;
-    private javax.swing.JLabel jLabelSurname;
-    private javax.swing.JTextArea jMachineReadableZoneArea;
     private javax.swing.JComboBox<String> jNationalityCombo;
     private javax.swing.JTextField jPassportField;
     private javax.swing.JTextField jPersonalNumberField;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jSubmitButton;
     private javax.swing.JTextField jSurnameField;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JPanel panelOne;
-    private javax.swing.JPanel panelTwo;
+    private javax.swing.JLabel mrzChecksumFive;
+    private javax.swing.JLabel mrzChecksumFour;
+    private javax.swing.JLabel mrzChecksumOne;
+    private javax.swing.JLabel mrzChecksumThree;
+    private javax.swing.JLabel mrzChecksumTwo;
+    private javax.swing.JLabel mrzCountry;
+    private javax.swing.JLabel mrzDateOfBirth;
+    private javax.swing.JLabel mrzExpiryDate;
+    private javax.swing.JLabel mrzGender;
+    private javax.swing.JLabel mrzLineOne;
+    private javax.swing.JLabel mrzPassportNumber;
+    private javax.swing.JLabel mrzPersonalNumber;
+    private javax.swing.JPanel panelButtonBar;
+    private javax.swing.JPanel panelCandidateInput;
+    private javax.swing.JPanel panelPassportNumber;
+    private javax.swing.JPanel panelResultsPage;
+    private javax.swing.JLabel surnameLabel;
     // End of variables declaration//GEN-END:variables
 }
