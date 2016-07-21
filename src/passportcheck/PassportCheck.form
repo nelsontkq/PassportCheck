@@ -108,7 +108,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jPersonalNumberField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jNationalityCombo" alignment="0" pref="330" max="32767" attributes="0"/>
+                                  <Component id="jNationalityCombo" alignment="0" pref="212" max="32767" attributes="0"/>
                                   <Component id="jGenderCombo" alignment="1" max="32767" attributes="0"/>
                                   <Component id="jDateOfBirthField" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -269,6 +269,7 @@
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jPassportField.getDocument().addDocumentListener(new DocumentListener() {&#xa;  public void changedUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;&#xa;  public void changed() {&#xa;     if (jPassportField.getText().equals(&quot;&quot;)){&#xa;       jSubmitButton.setEnabled(false);&#xa;     }&#xa;     else {&#xa;       jSubmitButton.setEnabled(true);&#xa;    }&#xa;&#xa;  }&#xa;});"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jPassportField.setDocument(new JTextFieldLimit(9));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jSurnameField">
@@ -627,7 +628,7 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jPersonalNumberField.getDocument().addDocumentListener(new DocumentListener() {&#xa;public void changedUpdate(DocumentEvent e) {&#xa;    changed();&#xa;}&#xa;public void removeUpdate(DocumentEvent e) {&#xa;    changed();&#xa;}&#xa;public void insertUpdate(DocumentEvent e) {&#xa;    changed();&#xa;}&#xa;public void changed() {&#xa;    if (jPersonalNumberField.getText().equals(&quot;&quot;)){&#xa;       jSubmitButton.setEnabled(false);&#xa;    }&#xa;    else {&#xa;       jSubmitButton.setEnabled(true);&#xa;    }&#xa;&#xa;}&#xa;});"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="AbstractDocument document = (AbstractDocument) jPersonalNumberField.getDocument();&#xa;final int maxCharacters = 16;&#xa;document.setDocumentFilter(new DocumentFilter() {&#xa;public void replace(FilterBypass fb, int offs, int length,&#xa;                    String str, AttributeSet a) throws BadLocationException {&#xa;&#xa;                String text = fb.getDocument().getText(0,&#xa;                        fb.getDocument().getLength());&#xa;                text += str;&#xa;                if ((fb.getDocument().getLength() + str.length() - length) &lt;= maxCharacters&#xa;                        &amp;&amp; text.matches(&quot;^[0-9]+[.]?[0-9]{0,1}$&quot;)) {&#xa;                    super.replace(fb, offs, length, str, a);&#xa;                } else {&#xa;                    Toolkit.getDefaultToolkit().beep();&#xa;                }&#xa;            }&#xa;&#xa;            public void insertString(FilterBypass fb, int offs, String str,&#xa;                    AttributeSet a) throws BadLocationException {&#xa;&#xa;                String text = fb.getDocument().getText(0,&#xa;                        fb.getDocument().getLength());&#xa;                text += str;&#xa;                if ((fb.getDocument().getLength() + str.length()) &lt;= maxCharacters&#xa;                        &amp;&amp; text.matches(&quot;^[0-9]+[.]?[0-9]{0,1}$&quot;)) {&#xa;                    super.insertString(fb, offs, str, a);&#xa;                } else {&#xa;                    Toolkit.getDefaultToolkit().beep();&#xa;                }&#xa;            }&#xa;        });"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jPersonalNumberField.setDocument(new JTextFieldLimit(16));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelExpiry">
@@ -681,6 +682,7 @@
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="PromptSupport.setPrompt(&quot;DD/MM/YYYY&quot;, jExpiryField);&#xa;&#xa;jExpiryField.getDocument().addDocumentListener(new DocumentListener() {&#xa;  public void changedUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;&#xa;  public void changed() {&#xa;     if (jExpiryField.getText().equals(&quot;&quot;)){&#xa;       jSubmitButton.setEnabled(false);&#xa;     }&#xa;     else {&#xa;       jSubmitButton.setEnabled(true);&#xa;    }&#xa;&#xa;  }&#xa;});"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jExpiryField.setDocument(new JTextFieldLimit(10));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jDateOfBirthField">
@@ -701,6 +703,7 @@
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="PromptSupport.setPrompt(&quot;DD/MM/YYYY&quot;, jDateOfBirthField);&#xa;&#xa;jDateOfBirthField.getDocument().addDocumentListener(new DocumentListener() {&#xa;  public void changedUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;    changed();&#xa;  }&#xa;&#xa;  public void changed() {&#xa;     if (jDateOfBirthField.getText().equals(&quot;&quot;)){&#xa;       jSubmitButton.setEnabled(false);&#xa;     }&#xa;     else {&#xa;       jSubmitButton.setEnabled(true);&#xa;    }&#xa;&#xa;  }&#xa;});"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jDateOfBirthField.setDocument(new JTextFieldLimit(10));"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -724,18 +727,18 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                       <Component id="panelPassportNumber" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="141" max="32767" attributes="0"/>
+                      <EmptySpace pref="124" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="233" max="32767" attributes="0"/>
+                      <EmptySpace pref="185" max="32767" attributes="0"/>
                       <Component id="panelPassportNumber" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -774,7 +777,6 @@
                           <Component id="mrzChecksumFour" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="mrzChecksumFive" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -829,6 +831,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="mrzChecksumOne">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="99" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Monospaced" size="18" style="0"/>
                     </Property>
@@ -862,6 +867,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="mrzChecksumTwo">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="99" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Monospaced" size="18" style="0"/>
                     </Property>
@@ -895,6 +903,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="mrzChecksumThree">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="99" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Monospaced" size="18" style="0"/>
                     </Property>
@@ -928,6 +939,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="mrzChecksumFive">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="99" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Monospaced" size="18" style="0"/>
                     </Property>
