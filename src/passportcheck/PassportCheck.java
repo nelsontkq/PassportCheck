@@ -85,6 +85,7 @@ public class PassportCheck extends javax.swing.JFrame {
         mrzPersonalNumber = new javax.swing.JLabel();
         mrzChecksumFour = new javax.swing.JLabel();
         mrzChecksumFive = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         panelButtonBar = new javax.swing.JPanel();
         jFinishButton = new javax.swing.JButton();
         jSubmitButton = new javax.swing.JButton();
@@ -128,7 +129,7 @@ public class PassportCheck extends javax.swing.JFrame {
         jPassportField.setDocument(new JTextFieldLimit(9));
         jPassportField.setBackground(new java.awt.Color(255, 255, 255));
         jPassportField.setForeground(new java.awt.Color(0, 0, 0));
-        jPassportField.setText("12345678");
+        jPassportField.setText("123456789");
         jPassportField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
         jPassportField.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
@@ -225,7 +226,7 @@ public class PassportCheck extends javax.swing.JFrame {
         jPersonalNumberField.setDocument(new JTextFieldLimit(16));
         jPersonalNumberField.setBackground(new java.awt.Color(255, 255, 255));
         jPersonalNumberField.setForeground(new java.awt.Color(0, 0, 0));
-        jPersonalNumberField.setText("<<<<<<<<<<<<<<<<<");
+        jPersonalNumberField.setText("<<<<<<<<<<<<<<01");
         jPersonalNumberField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
         jPersonalNumberField.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
@@ -338,7 +339,7 @@ public class PassportCheck extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCandidateInputLayout.createSequentialGroup()
                         .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPersonalNumberField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jNationalityCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 212, Short.MAX_VALUE)
+                            .addComponent(jNationalityCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 216, Short.MAX_VALUE)
                             .addComponent(jGenderCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDateOfBirthField, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,6 +421,7 @@ public class PassportCheck extends javax.swing.JFrame {
         mrzChecksumOne.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         mrzChecksumOne.setForeground(new java.awt.Color(0, 0, 0));
         mrzChecksumOne.setText("1");
+        mrzChecksumOne.setOpaque(true);
 
         mrzCountry.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         mrzCountry.setForeground(new java.awt.Color(0, 0, 0));
@@ -433,6 +435,7 @@ public class PassportCheck extends javax.swing.JFrame {
         mrzChecksumTwo.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         mrzChecksumTwo.setForeground(new java.awt.Color(0, 0, 0));
         mrzChecksumTwo.setText("2");
+        mrzChecksumTwo.setOpaque(true);
 
         mrzGender.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         mrzGender.setForeground(new java.awt.Color(0, 0, 0));
@@ -446,19 +449,23 @@ public class PassportCheck extends javax.swing.JFrame {
         mrzChecksumThree.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         mrzChecksumThree.setForeground(new java.awt.Color(0, 0, 0));
         mrzChecksumThree.setText("3");
+        mrzChecksumThree.setOpaque(true);
 
         mrzPersonalNumber.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         mrzPersonalNumber.setForeground(new java.awt.Color(0, 0, 0));
         mrzPersonalNumber.setText("<<<<<<<<<<<<<<");
 
+        mrzChecksumFour.setBackground(new java.awt.Color(255, 153, 102));
         mrzChecksumFour.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         mrzChecksumFour.setForeground(new java.awt.Color(0, 0, 0));
         mrzChecksumFour.setText("0");
+        mrzChecksumFour.setOpaque(true);
 
         mrzChecksumFive.setBackground(new java.awt.Color(255, 153, 102));
         mrzChecksumFive.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         mrzChecksumFive.setForeground(new java.awt.Color(0, 0, 0));
         mrzChecksumFive.setText("0");
+        mrzChecksumFive.setOpaque(true);
 
         javax.swing.GroupLayout panelPassportNumberLayout = new javax.swing.GroupLayout(panelPassportNumber);
         panelPassportNumber.setLayout(panelPassportNumberLayout);
@@ -509,21 +516,29 @@ public class PassportCheck extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Highlighted digits must match the passport");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout panelResultsPageLayout = new javax.swing.GroupLayout(panelResultsPage);
         panelResultsPage.setLayout(panelResultsPageLayout);
         panelResultsPageLayout.setHorizontalGroup(
             panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelResultsPageLayout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addComponent(panelPassportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addGroup(panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelPassportNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         panelResultsPageLayout.setVerticalGroup(
             panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResultsPageLayout.createSequentialGroup()
                 .addContainerGap(185, Short.MAX_VALUE)
                 .addComponent(panelPassportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(27, 27, 27))
         );
 
         mainPanel.add(panelResultsPage, "panelTwo");
@@ -764,6 +779,7 @@ public class PassportCheck extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jGenderCombo;
     private javax.swing.JTextField jGivenNameField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCountry;
     private javax.swing.JLabel jLabelCountry2;
     private javax.swing.JLabel jLabelExpiry;
