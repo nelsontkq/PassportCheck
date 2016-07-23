@@ -6,20 +6,16 @@
 package passportcheck;
 
 import java.awt.CardLayout;
-import java.awt.Toolkit;
+import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.AbstractDocument;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.DocumentFilter;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import org.jdesktop.swingx.prompt.PromptSupport;
 /**
  *
@@ -35,6 +31,7 @@ public class PassportCheck extends javax.swing.JFrame {
     String gender = "";
     String expiryDate = "";
     String personalNumber = "";
+    boolean nextPage = true;
     /**
      * Creates new form PassportCheck
      */
@@ -54,23 +51,23 @@ public class PassportCheck extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         panelCandidateInput = new javax.swing.JPanel();
         surnameLabel = new javax.swing.JLabel();
-        jLabelGivenName = new javax.swing.JLabel();
-        jLabelCountry = new javax.swing.JLabel();
-        jLabelPassportNo = new javax.swing.JLabel();
-        jCountryCombo = new javax.swing.JComboBox<>();
-        jPassportField = new javax.swing.JTextField();
-        jSurnameField = new javax.swing.JTextField();
-        jGivenNameField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jNationalityCombo = new javax.swing.JComboBox<>();
-        jLabelNationality = new javax.swing.JLabel();
-        jLabelCountry2 = new javax.swing.JLabel();
-        jPersonalNumberField = new javax.swing.JTextField();
-        jLabelExpiry = new javax.swing.JLabel();
-        jLabelGender = new javax.swing.JLabel();
-        jGenderCombo = new javax.swing.JComboBox<>();
-        jExpiryField = new javax.swing.JFormattedTextField();
-        jDateOfBirthField = new javax.swing.JFormattedTextField();
+        givenNameLabel = new javax.swing.JLabel();
+        dateOfBirthLabel = new javax.swing.JLabel();
+        passportNumberLabel = new javax.swing.JLabel();
+        nationalityLabel = new javax.swing.JLabel();
+        countryLabel = new javax.swing.JLabel();
+        genderLabel = new javax.swing.JLabel();
+        expiryLabel = new javax.swing.JLabel();
+        personalNumberLabel = new javax.swing.JLabel();
+        surnameInput = new javax.swing.JTextField();
+        givenNameInput = new javax.swing.JTextField();
+        dateOfBirthInput = new javax.swing.JFormattedTextField();
+        passportNumberInput = new javax.swing.JTextField();
+        nationalityInput = new javax.swing.JComboBox<>();
+        countryInput = new javax.swing.JComboBox<>();
+        genderInput = new javax.swing.JComboBox<>();
+        expiryInput = new javax.swing.JFormattedTextField();
+        personalNumberInput = new javax.swing.JTextField();
         panelResultsPage = new javax.swing.JPanel();
         panelPassportNumber = new javax.swing.JPanel();
         mrzLineOne = new javax.swing.JLabel();
@@ -86,10 +83,11 @@ public class PassportCheck extends javax.swing.JFrame {
         mrzChecksumFour = new javax.swing.JLabel();
         mrzChecksumFive = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        noButton = new javax.swing.JButton();
+        yesButton = new javax.swing.JButton();
         panelButtonBar = new javax.swing.JPanel();
-        jFinishButton = new javax.swing.JButton();
-        jSubmitButton = new javax.swing.JButton();
-        jBackButton = new javax.swing.JButton();
+        submitButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -111,212 +109,83 @@ public class PassportCheck extends javax.swing.JFrame {
         surnameLabel.setMaximumSize(new java.awt.Dimension(81, 15));
         surnameLabel.setMinimumSize(new java.awt.Dimension(81, 15));
 
-        jLabelGivenName.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
-        jLabelGivenName.setText("Given names");
-        jLabelGivenName.setMaximumSize(new java.awt.Dimension(81, 15));
-        jLabelGivenName.setMinimumSize(new java.awt.Dimension(81, 15));
+        givenNameLabel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        givenNameLabel.setText("Given names");
+        givenNameLabel.setMaximumSize(new java.awt.Dimension(81, 15));
+        givenNameLabel.setMinimumSize(new java.awt.Dimension(81, 15));
 
-        jLabelCountry.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
-        jLabelCountry.setText("Issuing Country*");
+        dateOfBirthLabel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        dateOfBirthLabel.setText("Date of birth");
+        dateOfBirthLabel.setMaximumSize(new java.awt.Dimension(81, 15));
+        dateOfBirthLabel.setMinimumSize(new java.awt.Dimension(81, 15));
 
-        jLabelPassportNo.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
-        jLabelPassportNo.setText("Passport No.*");
+        passportNumberLabel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        passportNumberLabel.setText("Passport No.");
 
-        jCountryCombo.setBackground(new java.awt.Color(255, 255, 255));
-        jCountryCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Cook Islands", "Costa Rica", "Cï¿½te d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic People's Republic of Korea", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faeroe Islands", "Fiji", "Finland", "France", "France - Metropolitan", "French Guiana", "French Polynesia", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and McDonald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Republic of", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands, Kingdom of the", "Netherlands Antilles", "Neutral Zone", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Republic of Korea", "Republic of Moldova", "Réunion", "Romania", "Russian Federation", "Rwanda", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Island", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan Province of China", "Tajikistan", "Thailand", "The former Yugoslav Republic of Macedonia", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom - Citizen", "United Kingdom -Dependent territories citizen", "United Kingdom -National (overseas)", "United Kingdom -Overseas citizen", "United Kingdom -Protected Person", "United Kingdom -Subject", "United Republic of Tanzania", "United States of America", "United States of America Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Viet Nam", "Virgin Islands (Great Britian)", "Virgin Islands (United States)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Zaire", "Zambia", "Zimbabwe" }));
-        jCountryCombo.setToolTipText("");
+        nationalityLabel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        nationalityLabel.setText("Nationality");
+        nationalityLabel.setMaximumSize(new java.awt.Dimension(81, 15));
+        nationalityLabel.setMinimumSize(new java.awt.Dimension(81, 15));
 
-        jPassportField.setDocument(new JTextFieldLimit(9));
-        jPassportField.setBackground(new java.awt.Color(255, 255, 255));
-        jPassportField.setForeground(new java.awt.Color(0, 0, 0));
-        jPassportField.setText("123456789");
-        jPassportField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
-        jPassportField.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void removeUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void insertUpdate(DocumentEvent e) {
-                changed();
-            }
+        countryLabel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        countryLabel.setText("Issuing Country");
 
-            public void changed() {
-                if (jPassportField.getText().equals("")){
-                    jSubmitButton.setEnabled(false);
-                }
-                else {
-                    jSubmitButton.setEnabled(true);
-                }
+        genderLabel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        genderLabel.setText("Gender");
 
-            }
-        });
+        expiryLabel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        expiryLabel.setText("Expiry date");
 
-        jSurnameField.setBackground(new java.awt.Color(255, 255, 255));
-        jSurnameField.setForeground(new java.awt.Color(0, 0, 0));
-        jSurnameField.setText("Testerson");
-        jSurnameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
-        jSurnameField.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void removeUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void insertUpdate(DocumentEvent e) {
-                changed();
-            }
+        personalNumberLabel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        personalNumberLabel.setText("Personal number");
 
-            public void changed() {
-                if (jSurnameField.getText().equals("")){
-                    jSubmitButton.setEnabled(false);
-                    surnameLabel.setText("Surname*");
-                }
-                else {
-                    jSubmitButton.setEnabled(true);
-                    surnameLabel.setText("Surname");
-                }
+        surnameInput.setBackground(new java.awt.Color(255, 255, 255));
+        surnameInput.setForeground(new java.awt.Color(0, 0, 0));
+        surnameInput.setText("Testerson");
+        surnameInput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
 
-            }
-        });
+        givenNameInput.setBackground(new java.awt.Color(255, 255, 255));
+        givenNameInput.setForeground(new java.awt.Color(0, 0, 0));
+        givenNameInput.setText("Testy McTesting");
+        givenNameInput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
 
-        jGivenNameField.setBackground(new java.awt.Color(255, 255, 255));
-        jGivenNameField.setForeground(new java.awt.Color(0, 0, 0));
-        jGivenNameField.setText("Testy McTesting");
-        jGivenNameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
-        jGivenNameField.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void removeUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void insertUpdate(DocumentEvent e) {
-                changed();
-            }
+        dateOfBirthInput.setDocument(new JTextFieldLimit(10));
+        dateOfBirthInput.setBackground(new java.awt.Color(255, 255, 255));
+        dateOfBirthInput.setForeground(new java.awt.Color(0, 0, 0));
+        dateOfBirthInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        dateOfBirthInput.setText("01/01/1991");
+        dateOfBirthInput.setCaretColor(new java.awt.Color(255, 255, 255));
+        PromptSupport.setPrompt("DD/MM/YYYY", dateOfBirthInput);
 
-            public void changed() {
-                if (jGivenNameField.getText().equals("")){
-                    jSubmitButton.setEnabled(false);
-                }
-                else {
-                    jSubmitButton.setEnabled(true);
-                }
+        passportNumberInput.setDocument(new JTextFieldLimit(9));
+        passportNumberInput.setBackground(new java.awt.Color(255, 255, 255));
+        passportNumberInput.setForeground(new java.awt.Color(0, 0, 0));
+        passportNumberInput.setText("123456789");
+        passportNumberInput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
 
-            }
-        });
+        nationalityInput.setBackground(new java.awt.Color(255, 255, 255));
+        nationalityInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Cook Islands", "Costa Rica", "Cï¿½te d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic People's Republic of Korea", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faeroe Islands", "Fiji", "Finland", "France", "France - Metropolitan", "French Guiana", "French Polynesia", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and McDonald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Republic of", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands, Kingdom of the", "Netherlands Antilles", "Neutral Zone", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Republic of Korea", "Republic of Moldova", "Réunion", "Romania", "Russian Federation", "Rwanda", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Island", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan Province of China", "Tajikistan", "Thailand", "The former Yugoslav Republic of Macedonia", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom - Citizen", "United Kingdom -Dependent territories citizen", "United Kingdom -National (overseas)", "United Kingdom -Overseas citizen", "United Kingdom -Protected Person", "United Kingdom -Subject", "United Republic of Tanzania", "United States of America", "United States of America Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Viet Nam", "Virgin Islands (Great Britian)", "Virgin Islands (United States)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Zaire", "Zambia", "Zimbabwe" }));
 
-        jLabel1.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
-        jLabel1.setText("Date of birth*");
-        jLabel1.setMaximumSize(new java.awt.Dimension(81, 15));
-        jLabel1.setMinimumSize(new java.awt.Dimension(81, 15));
+        countryInput.setBackground(new java.awt.Color(255, 255, 255));
+        countryInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Cook Islands", "Costa Rica", "Cï¿½te d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic People's Republic of Korea", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faeroe Islands", "Fiji", "Finland", "France", "France - Metropolitan", "French Guiana", "French Polynesia", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and McDonald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Republic of", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands, Kingdom of the", "Netherlands Antilles", "Neutral Zone", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Republic of Korea", "Republic of Moldova", "Réunion", "Romania", "Russian Federation", "Rwanda", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Island", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan Province of China", "Tajikistan", "Thailand", "The former Yugoslav Republic of Macedonia", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom - Citizen", "United Kingdom -Dependent territories citizen", "United Kingdom -National (overseas)", "United Kingdom -Overseas citizen", "United Kingdom -Protected Person", "United Kingdom -Subject", "United Republic of Tanzania", "United States of America", "United States of America Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Viet Nam", "Virgin Islands (Great Britian)", "Virgin Islands (United States)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Zaire", "Zambia", "Zimbabwe" }));
+        countryInput.setToolTipText("");
 
-        jNationalityCombo.setBackground(new java.awt.Color(255, 255, 255));
-        jNationalityCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Cook Islands", "Costa Rica", "Cï¿½te d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic People's Republic of Korea", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faeroe Islands", "Fiji", "Finland", "France", "France - Metropolitan", "French Guiana", "French Polynesia", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and McDonald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Republic of", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands, Kingdom of the", "Netherlands Antilles", "Neutral Zone", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Republic of Korea", "Republic of Moldova", "Réunion", "Romania", "Russian Federation", "Rwanda", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Island", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan Province of China", "Tajikistan", "Thailand", "The former Yugoslav Republic of Macedonia", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom - Citizen", "United Kingdom -Dependent territories citizen", "United Kingdom -National (overseas)", "United Kingdom -Overseas citizen", "United Kingdom -Protected Person", "United Kingdom -Subject", "United Republic of Tanzania", "United States of America", "United States of America Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Viet Nam", "Virgin Islands (Great Britian)", "Virgin Islands (United States)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Zaire", "Zambia", "Zimbabwe" }));
+        genderInput.setBackground(new java.awt.Color(255, 255, 255));
+        genderInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Male", "Female" }));
 
-        jLabelNationality.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
-        jLabelNationality.setText("Nationality*");
-        jLabelNationality.setMaximumSize(new java.awt.Dimension(81, 15));
-        jLabelNationality.setMinimumSize(new java.awt.Dimension(81, 15));
+        expiryInput.setDocument(new JTextFieldLimit(10));
+        expiryInput.setBackground(new java.awt.Color(255, 255, 255));
+        expiryInput.setForeground(new java.awt.Color(0, 0, 0));
+        expiryInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        expiryInput.setText("20/02/2020");
+        expiryInput.setCaretColor(new java.awt.Color(255, 255, 255));
+        PromptSupport.setPrompt("DD/MM/YYYY", expiryInput);
 
-        jLabelCountry2.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
-        jLabelCountry2.setText("Personal number*");
-
-        jPersonalNumberField.setDocument(new JTextFieldLimit(16));
-        jPersonalNumberField.setBackground(new java.awt.Color(255, 255, 255));
-        jPersonalNumberField.setForeground(new java.awt.Color(0, 0, 0));
-        jPersonalNumberField.setText("<<<<<<<<<<<<<<01");
-        jPersonalNumberField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
-        jPersonalNumberField.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void removeUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void insertUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void changed() {
-                if (jPersonalNumberField.getText().equals("")){
-                    jSubmitButton.setEnabled(false);
-                }
-                else {
-                    jSubmitButton.setEnabled(true);
-                }
-
-            }
-        });
-
-        jLabelExpiry.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
-        jLabelExpiry.setText("Expiry date*");
-
-        jLabelGender.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
-        jLabelGender.setText("Gender");
-
-        jGenderCombo.setBackground(new java.awt.Color(255, 255, 255));
-        jGenderCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Male", "Female" }));
-
-        jExpiryField.setDocument(new JTextFieldLimit(10));
-        jExpiryField.setBackground(new java.awt.Color(255, 255, 255));
-        jExpiryField.setForeground(new java.awt.Color(0, 0, 0));
-        jExpiryField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        jExpiryField.setText("20/02/2020");
-        jExpiryField.setCaretColor(new java.awt.Color(255, 255, 255));
-        PromptSupport.setPrompt("DD/MM/YYYY", jExpiryField);
-
-        jExpiryField.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void removeUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void insertUpdate(DocumentEvent e) {
-                changed();
-            }
-
-            public void changed() {
-                if (jExpiryField.getText().equals("")){
-                    jSubmitButton.setEnabled(false);
-                }
-                else {
-                    jSubmitButton.setEnabled(true);
-                }
-
-            }
-        });
-
-        jDateOfBirthField.setDocument(new JTextFieldLimit(10));
-        jDateOfBirthField.setBackground(new java.awt.Color(255, 255, 255));
-        jDateOfBirthField.setForeground(new java.awt.Color(0, 0, 0));
-        jDateOfBirthField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        jDateOfBirthField.setText("01/01/1991");
-        jDateOfBirthField.setCaretColor(new java.awt.Color(255, 255, 255));
-        PromptSupport.setPrompt("DD/MM/YYYY", jDateOfBirthField);
-
-        jDateOfBirthField.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void removeUpdate(DocumentEvent e) {
-                changed();
-            }
-            public void insertUpdate(DocumentEvent e) {
-                changed();
-            }
-
-            public void changed() {
-                if (jDateOfBirthField.getText().equals("")){
-                    jSubmitButton.setEnabled(false);
-                }
-                else {
-                    jSubmitButton.setEnabled(true);
-                }
-
-            }
-        });
+        personalNumberInput.setDocument(new JTextFieldLimit(16));
+        personalNumberInput.setBackground(new java.awt.Color(255, 255, 255));
+        personalNumberInput.setForeground(new java.awt.Color(0, 0, 0));
+        personalNumberInput.setText("<<<<<<<<<<<<<<01");
+        personalNumberInput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
 
         javax.swing.GroupLayout panelCandidateInputLayout = new javax.swing.GroupLayout(panelCandidateInput);
         panelCandidateInput.setLayout(panelCandidateInputLayout);
@@ -324,38 +193,33 @@ public class PassportCheck extends javax.swing.JFrame {
             panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCandidateInputLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                        .addComponent(jLabelGivenName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(surnameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabelNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelGender, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCountry2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(personalNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(genderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nationalityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateOfBirthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(givenNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(surnameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jGivenNameField)
-                    .addComponent(jSurnameField)
+                    .addComponent(givenNameInput)
+                    .addComponent(surnameInput)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCandidateInputLayout.createSequentialGroup()
                         .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPersonalNumberField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jNationalityCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 216, Short.MAX_VALUE)
-                            .addComponent(jGenderCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateOfBirthField, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelCandidateInputLayout.createSequentialGroup()
-                                .addGap(88, 88, 88)
-                                .addComponent(jLabelPassportNo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCandidateInputLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelExpiry, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelCountry, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(23, 23, 23)
+                            .addComponent(nationalityInput, javax.swing.GroupLayout.Alignment.LEADING, 0, 204, Short.MAX_VALUE)
+                            .addComponent(genderInput, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(personalNumberInput, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dateOfBirthInput, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(74, 74, 74)
                         .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPassportField)
-                            .addComponent(jCountryCombo, 0, 191, Short.MAX_VALUE)
-                            .addComponent(jExpiryField))))
+                            .addComponent(countryLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(expiryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passportNumberLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(passportNumberInput)
+                            .addComponent(countryInput, 0, 191, Short.MAX_VALUE)
+                            .addComponent(expiryInput))))
                 .addContainerGap())
         );
         panelCandidateInputLayout.setVerticalGroup(
@@ -363,40 +227,39 @@ public class PassportCheck extends javax.swing.JFrame {
             .addGroup(panelCandidateInputLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSurnameField)
+                    .addComponent(surnameInput)
                     .addComponent(surnameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jGivenNameField)
-                    .addComponent(jLabelGivenName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(givenNameInput)
+                    .addComponent(givenNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDateOfBirthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPassportField)
-                    .addGroup(panelCandidateInputLayout.createSequentialGroup()
-                        .addComponent(jLabelPassportNo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(dateOfBirthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dateOfBirthInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(passportNumberInput)
+                        .addComponent(passportNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelNationality, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nationalityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                        .addComponent(jLabelCountry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCountryCombo)
-                        .addComponent(jNationalityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(countryLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(countryInput)
+                        .addComponent(nationalityInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCandidateInputLayout.createSequentialGroup()
-                        .addComponent(jLabelGender)
+                        .addComponent(genderLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jGenderCombo)
-                    .addComponent(jLabelExpiry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jExpiryField))
+                    .addComponent(genderInput)
+                    .addComponent(expiryLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(expiryInput))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCandidateInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCountry2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPersonalNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(personalNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(personalNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(318, 318, 318))
         );
 
@@ -405,7 +268,7 @@ public class PassportCheck extends javax.swing.JFrame {
         panelResultsPage.setBackground(new java.awt.Color(240, 240, 240));
         panelResultsPage.setForeground(new java.awt.Color(240, 240, 240));
 
-        panelPassportNumber.setBackground(new java.awt.Color(240, 240, 240));
+        panelPassportNumber.setBackground(new java.awt.Color(204, 204, 204));
 
         mrzLineOne.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         mrzLineOne.setForeground(new java.awt.Color(0, 0, 0));
@@ -517,8 +380,17 @@ public class PassportCheck extends javax.swing.JFrame {
         );
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Highlighted digits must match the passport");
+        jLabel2.setText("Do the highlighted check digits above match the original passport?");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        noButton.setText("No");
+
+        yesButton.setText("Yes");
+        yesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yesButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelResultsPageLayout = new javax.swing.GroupLayout(panelResultsPage);
         panelResultsPage.setLayout(panelResultsPageLayout);
@@ -526,47 +398,45 @@ public class PassportCheck extends javax.swing.JFrame {
             panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelResultsPageLayout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addGroup(panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelPassportNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResultsPageLayout.createSequentialGroup()
+                        .addComponent(noButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(yesButton))
+                    .addComponent(panelPassportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
         panelResultsPageLayout.setVerticalGroup(
             panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResultsPageLayout.createSequentialGroup()
-                .addContainerGap(185, Short.MAX_VALUE)
+                .addContainerGap(164, Short.MAX_VALUE)
                 .addComponent(panelPassportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(27, 27, 27))
+                .addGap(12, 12, 12)
+                .addGroup(panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(noButton)
+                    .addComponent(yesButton))
+                .addContainerGap())
         );
 
         mainPanel.add(panelResultsPage, "panelTwo");
 
-        jFinishButton.setText("Finish");
-        jFinishButton.setBorder(null);
-        jFinishButton.setEnabled(false);
-        jFinishButton.addActionListener(new java.awt.event.ActionListener() {
+        submitButton.setText("Submit");
+        submitButton.setBorder(null);
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFinishButtonActionPerformed(evt);
+                submitButtonActionPerformed(evt);
             }
         });
 
-        jSubmitButton.setText("Submit");
-        jSubmitButton.setBorder(null);
-        jSubmitButton.setEnabled(false);
-        jSubmitButton.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("Back");
+        backButton.setBorder(null);
+        backButton.setEnabled(false);
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSubmitButtonActionPerformed(evt);
-            }
-        });
-
-        jBackButton.setText("Back");
-        jBackButton.setBorder(null);
-        jBackButton.setEnabled(false);
-        jBackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBackButtonActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -576,21 +446,18 @@ public class PassportCheck extends javax.swing.JFrame {
             panelButtonBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelButtonBarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFinishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panelButtonBarLayout.setVerticalGroup(
             panelButtonBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelButtonBarLayout.createSequentialGroup()
                 .addGap(3, 3, 3)
-                .addGroup(panelButtonBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSubmitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(jFinishButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(panelButtonBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -615,24 +482,53 @@ public class PassportCheck extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
-        try {
-            surname = jSurnameField.getText();
-            givenName = jGivenNameField.getText();
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+
+        nextPage = true;
+        JTextField[] textFieldArray = new JTextField[] {surnameInput, givenNameInput, 
+            dateOfBirthInput, passportNumberInput, expiryInput, personalNumberInput};
+        JLabel[] textFieldLabelArray = new JLabel[] {surnameLabel, givenNameLabel, 
+            dateOfBirthLabel, passportNumberLabel,  expiryLabel, personalNumberLabel};
+        JComboBox[] comboBoxArray = new JComboBox[]{nationalityInput, countryInput, genderInput};
+        JLabel[] comboBoxLabelArray = new JLabel[]{nationalityLabel, countryLabel, genderLabel};
+
+        for(int i = 0; i < textFieldArray.length; i++){
+            String label = textFieldLabelArray[i].getText();
+            if(textFieldArray[i].getText().trim().length() == 0){
+                if(label.charAt(label.length() - 1) != '*'){
+                    textFieldLabelArray[i].setText(label + '*');
+                }
+            textFieldLabelArray[i].setForeground(Color.RED);
+            nextPage = false;
+            }
+        }
+        for(int i = 0; i < comboBoxArray.length; i++) {
+            if(comboBoxArray[i].getSelectedIndex() == 0){
+                String label = comboBoxLabelArray[i].getText();
+                if(label.charAt(label.length() - 1) != '*'){
+                    comboBoxLabelArray[i].setText(label + '*');
+                }
+                comboBoxLabelArray[i].setForeground(Color.RED);
+                nextPage = false;
+            }
+        }
+        if(nextPage){
+            surname = surnameInput.getText();
+            givenName = givenNameInput.getText();
             DateFormat userInput = new SimpleDateFormat("dd/MM/yyyy");
             DateFormat formatNeeded = new SimpleDateFormat("yyMMdd");
             Date dob = null;
             Date exp = null;
             try {
-                dob = userInput.parse(jDateOfBirthField.getText());
-                exp = userInput.parse(jExpiryField.getText());
+                dob = userInput.parse(dateOfBirthInput.getText());
+                exp = userInput.parse(expiryInput.getText());
             } catch (ParseException ex) {
                 Logger.getLogger(PassportCheck.class.getName()).log(Level.SEVERE, null, ex);
             }
             dateOfBirth = formatNeeded.format(dob);
             expiryDate = formatNeeded.format(exp);
-            passportNumber = jPassportField.getText();
-            int genderIndex = jGenderCombo.getSelectedIndex();
+            passportNumber = passportNumberInput.getText();
+            int genderIndex = genderInput.getSelectedIndex();
             switch (genderIndex) {
                 case 1:
                     gender = "M";
@@ -644,11 +540,11 @@ public class PassportCheck extends javax.swing.JFrame {
                     gender = "ERROR";
                     break;
             }
-            personalNumber = jPersonalNumberField.getText();
+            personalNumber = personalNumberInput.getText();
             
-            int nationalityIndex = jNationalityCombo.getSelectedIndex();
+            int nationalityIndex = nationalityInput.getSelectedIndex();
             nationalityIndex -= 1;  // -1 to offset Select
-            int countryIndex = jCountryCombo.getSelectedIndex();
+            int countryIndex = countryInput.getSelectedIndex();
             countryIndex -= 1;  // -1 to offset Select
             CountryCode code = new CountryCode();
             nationality = code.toCode(nationalityIndex); 
@@ -719,21 +615,37 @@ public class PassportCheck extends javax.swing.JFrame {
 
             CardLayout card = (CardLayout)mainPanel.getLayout();
             card.show(mainPanel, "panelTwo");
-            jBackButton.setEnabled(true);
-        } catch(java.lang.IllegalArgumentException e){
-            System.out.print("missing date");
+            backButton.setEnabled(true);
+            submitButton.setEnabled(false);
         }
-    }//GEN-LAST:event_jSubmitButtonActionPerformed
+    }//GEN-LAST:event_submitButtonActionPerformed
 
-    private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        JLabel[] jl = new JLabel[] {surnameLabel, givenNameLabel, dateOfBirthLabel,
+            passportNumberLabel, nationalityLabel, countryLabel, genderLabel,
+            expiryLabel, personalNumberLabel};
+        for (JLabel jl1 : jl) {
+            String label = jl1.getText();
+            if (label.charAt(label.length() - 1) == '*') {
+                label = label.substring(0, label.length()-1);
+                jl1.setText(label);
+                jl1.setForeground(Color.black);
+            }
+        }
+        
         CardLayout card = (CardLayout)mainPanel.getLayout();
         card.show(mainPanel, "panelOne");
-        jBackButton.setEnabled(false);
-    }//GEN-LAST:event_jBackButtonActionPerformed
+        backButton.setEnabled(false);
+    }//GEN-LAST:event_backButtonActionPerformed
 
-    private void jFinishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFinishButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFinishButtonActionPerformed
+    private void yesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesButtonActionPerformed
+        yesButton.setEnabled(false);
+        submitButton.setEnabled(true);
+        /** Copy the passport PDF
+         *  add a green verified tick.
+         * 
+         */
+    }//GEN-LAST:event_yesButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -771,27 +683,18 @@ public class PassportCheck extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBackButton;
-    private javax.swing.JComboBox<String> jCountryCombo;
-    private javax.swing.JFormattedTextField jDateOfBirthField;
-    private javax.swing.JFormattedTextField jExpiryField;
-    private javax.swing.JButton jFinishButton;
-    private javax.swing.JComboBox<String> jGenderCombo;
-    private javax.swing.JTextField jGivenNameField;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton backButton;
+    private javax.swing.JComboBox<String> countryInput;
+    private javax.swing.JLabel countryLabel;
+    private javax.swing.JFormattedTextField dateOfBirthInput;
+    private javax.swing.JLabel dateOfBirthLabel;
+    private javax.swing.JFormattedTextField expiryInput;
+    private javax.swing.JLabel expiryLabel;
+    private javax.swing.JComboBox<String> genderInput;
+    private javax.swing.JLabel genderLabel;
+    private javax.swing.JTextField givenNameInput;
+    private javax.swing.JLabel givenNameLabel;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabelCountry;
-    private javax.swing.JLabel jLabelCountry2;
-    private javax.swing.JLabel jLabelExpiry;
-    private javax.swing.JLabel jLabelGender;
-    private javax.swing.JLabel jLabelGivenName;
-    private javax.swing.JLabel jLabelNationality;
-    private javax.swing.JLabel jLabelPassportNo;
-    private javax.swing.JComboBox<String> jNationalityCombo;
-    private javax.swing.JTextField jPassportField;
-    private javax.swing.JTextField jPersonalNumberField;
-    private javax.swing.JButton jSubmitButton;
-    private javax.swing.JTextField jSurnameField;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel mrzChecksumFive;
     private javax.swing.JLabel mrzChecksumFour;
@@ -805,10 +708,20 @@ public class PassportCheck extends javax.swing.JFrame {
     private javax.swing.JLabel mrzLineOne;
     private javax.swing.JLabel mrzPassportNumber;
     private javax.swing.JLabel mrzPersonalNumber;
+    private javax.swing.JComboBox<String> nationalityInput;
+    private javax.swing.JLabel nationalityLabel;
+    private javax.swing.JButton noButton;
     private javax.swing.JPanel panelButtonBar;
     private javax.swing.JPanel panelCandidateInput;
     private javax.swing.JPanel panelPassportNumber;
     private javax.swing.JPanel panelResultsPage;
+    private javax.swing.JTextField passportNumberInput;
+    private javax.swing.JLabel passportNumberLabel;
+    private javax.swing.JTextField personalNumberInput;
+    private javax.swing.JLabel personalNumberLabel;
+    private javax.swing.JButton submitButton;
+    private javax.swing.JTextField surnameInput;
     private javax.swing.JLabel surnameLabel;
+    private javax.swing.JButton yesButton;
     // End of variables declaration//GEN-END:variables
 }
