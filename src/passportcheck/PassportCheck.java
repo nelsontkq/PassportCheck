@@ -485,21 +485,53 @@ public class PassportCheck extends javax.swing.JFrame {
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
 
         nextPage = true;
-        JTextField[] textFieldArray = new JTextField[] {surnameInput, givenNameInput, 
-            dateOfBirthInput, passportNumberInput, expiryInput, personalNumberInput};
-        JLabel[] textFieldLabelArray = new JLabel[] {surnameLabel, givenNameLabel, 
-            dateOfBirthLabel, passportNumberLabel,  expiryLabel, personalNumberLabel};
+        JTextField[] textFieldArray = new JTextField[] {dateOfBirthInput, 
+            expiryInput, passportNumberInput, personalNumberInput, 
+            surnameInput, givenNameInput};
+        JLabel[] textFieldLabelArray = new JLabel[] {dateOfBirthLabel, 
+            expiryLabel, passportNumberLabel, personalNumberLabel, 
+            surnameLabel, givenNameLabel};
         JComboBox[] comboBoxArray = new JComboBox[]{nationalityInput, countryInput, genderInput};
         JLabel[] comboBoxLabelArray = new JLabel[]{nationalityLabel, countryLabel, genderLabel};
-
+        
         for(int i = 0; i < textFieldArray.length; i++){
             String label = textFieldLabelArray[i].getText();
-            if(textFieldArray[i].getText().trim().length() == 0){
+            int textLength = textFieldArray[i].getText().trim().length();
+            boolean incorrectInput = false;
+            // checks for correct character length
+            switch(i){
+                case 0:
+                case 1:{
+                    if(textLength != 10) {
+                        incorrectInput = true;
+                    }
+                    break;
+                }
+                case 2:{
+                    if(textLength != 9) {
+                        incorrectInput = true;
+                    }
+                    break;
+                }
+                case 3:{
+                    if(textLength != 16) {
+                        incorrectInput = true;
+                    }
+                    break;
+                }
+                default:{
+                    if(textLength == 0){
+                        incorrectInput = true;
+                    }
+                    break;
+                }
+            }
+            if(incorrectInput){
                 if(label.charAt(label.length() - 1) != '*'){
                     textFieldLabelArray[i].setText(label + '*');
                 }
-            textFieldLabelArray[i].setForeground(Color.RED);
-            nextPage = false;
+                textFieldLabelArray[i].setForeground(Color.RED);
+                nextPage = false;
             }
         }
         for(int i = 0; i < comboBoxArray.length; i++) {
@@ -512,6 +544,7 @@ public class PassportCheck extends javax.swing.JFrame {
                 nextPage = false;
             }
         }
+        
         if(nextPage){
             surname = surnameInput.getText();
             givenName = givenNameInput.getText();
@@ -552,12 +585,11 @@ public class PassportCheck extends javax.swing.JFrame {
             
             boolean ukCitizen = nationalityIndex == 221; // 221 = UK citizen. Code is always <<<<<<<<<<<<<0 or equal to 0
             if(ukCitizen){
-                personalNumber = "<<<<<<<<<<<<<<";
+                personalNumber = "<<<<<<<<<<<<<<<<";
             }
             StringBuilder pn = new StringBuilder(personalNumber);
-            if(pn.length() == 16){
-                pn.delete(15, 16);
-            }
+            pn.delete(14, 16);
+            
             personalNumber = pn.toString();
             String firstLine = "P<" + nationality + surname + "<<" + givenName;
             StringBuilder sb = new StringBuilder(firstLine);
@@ -636,15 +668,20 @@ public class PassportCheck extends javax.swing.JFrame {
         CardLayout card = (CardLayout)mainPanel.getLayout();
         card.show(mainPanel, "panelOne");
         backButton.setEnabled(false);
+        submitButton.setEnabled(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void yesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesButtonActionPerformed
         yesButton.setEnabled(false);
-        submitButton.setEnabled(true);
+        PassportAuthenticator pa = new PassportAuthenticator();
+        pa.Authenticate();
         /** Copy the passport PDF
          *  add a green verified tick.
          * 
          */
+        new PassportPopup().setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_yesButtonActionPerformed
 
     /**
