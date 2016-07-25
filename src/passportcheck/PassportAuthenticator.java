@@ -14,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.name.Rename;
 
 /**
  *
@@ -23,15 +22,16 @@ import net.coobird.thumbnailator.name.Rename;
 public class PassportAuthenticator {
     public void Authenticate(){
         try {
-            File path = new File(PassportCheck.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
             BufferedImage passport = null;
             BufferedImage tick = null;
             
+            File path = new File(PassportCheck.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+
             passport = ImageIO.read(new File(path, "\\passportcheck\\passport.jpg"));
             
             BufferedImage combined = new BufferedImage(passport.getWidth(), 
                     passport.getHeight(), BufferedImage.TYPE_INT_RGB);
-            int size = Math.min(passport.getHeight(), passport.getWidth());
+            int size = Math.min(passport.getHeight(), passport.getWidth())/2;
             
             tick = Thumbnails.of(new File(path, "\\passportcheck\\tick.png"))
                     .size(size, size)
@@ -40,7 +40,7 @@ public class PassportAuthenticator {
             Graphics g = combined.getGraphics();
             
             g.drawImage(passport, 0, 0, null);
-            g.drawImage(tick, 0, passport.getHeight()/6, null);
+            g.drawImage(tick, passport.getWidth()/3, passport.getHeight()/3, null);
             
             ImageIO.write(combined, "JPG", new File(path, "passportAuthenticated.jpg"));
             

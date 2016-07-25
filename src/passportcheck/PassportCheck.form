@@ -710,14 +710,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="noButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="yesButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="panelPassportNumber" min="-2" max="-2" attributes="0"/>
+                          <Component id="panelPassportNumber" max="32767" attributes="0"/>
                           <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="mrzPictureComparison" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="128" max="32767" attributes="0"/>
                   </Group>
@@ -726,7 +727,9 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="164" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="mrzPictureComparison" min="-2" pref="82" max="-2" attributes="0"/>
+                      <EmptySpace pref="42" max="32767" attributes="0"/>
                       <Component id="panelPassportNumber" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -979,6 +982,16 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="yesButtonActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="mrzPictureComparison">
+              <Properties>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[82, 484]"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try {&#xa;    File path = new File(PassportCheck.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());&#xa;    BufferedImage mrzImage = new BufferedImage(82, 484, BufferedImage.TYPE_INT_RGB);&#xa;    mrzImage = ImageIO.read(new File(path, &quot;mrz.jpg&quot;));&#xa;    ImageIcon icon = new ImageIcon(mrzImage);&#xa;    mrzPictureComparison.setIcon(icon);&#xa;} catch (IOException | URISyntaxException ex) {&#xa;            Logger.getLogger(PassportAuthenticator.class.getName()).log(Level.SEVERE, null, ex);&#xa;}"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

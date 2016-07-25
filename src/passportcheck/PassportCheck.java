@@ -7,19 +7,28 @@ package passportcheck;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import net.coobird.thumbnailator.Thumbnails;
 import org.jdesktop.swingx.prompt.PromptSupport;
 /**
  *
  * @author ntko
+ * TODO: - add passport MRZ crop tool for second window
+ *       - passport PDF to JPG then authenticated passport back to PDF
  */
 public class PassportCheck extends javax.swing.JFrame {
     String surname = "";
@@ -32,9 +41,7 @@ public class PassportCheck extends javax.swing.JFrame {
     String expiryDate = "";
     String personalNumber = "";
     boolean nextPage = true;
-    /**
-     * Creates new form PassportCheck
-     */
+
     public PassportCheck() {
         initComponents();
     }
@@ -85,6 +92,7 @@ public class PassportCheck extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         noButton = new javax.swing.JButton();
         yesButton = new javax.swing.JButton();
+        mrzPictureComparison = new javax.swing.JLabel();
         panelButtonBar = new javax.swing.JPanel();
         submitButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
@@ -392,25 +400,39 @@ public class PassportCheck extends javax.swing.JFrame {
             }
         });
 
+        try {
+            File path = new File(PassportCheck.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+            BufferedImage mrzImage = new BufferedImage(82, 484, BufferedImage.TYPE_INT_RGB);
+            mrzImage = ImageIO.read(new File(path, "mrz.jpg"));
+            ImageIcon icon = new ImageIcon(mrzImage);
+            mrzPictureComparison.setIcon(icon);
+        } catch (IOException | URISyntaxException ex) {
+            Logger.getLogger(PassportAuthenticator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        mrzPictureComparison.setMinimumSize(new java.awt.Dimension(82, 484));
+
         javax.swing.GroupLayout panelResultsPageLayout = new javax.swing.GroupLayout(panelResultsPage);
         panelResultsPage.setLayout(panelResultsPageLayout);
         panelResultsPageLayout.setHorizontalGroup(
             panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelResultsPageLayout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addGroup(panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResultsPageLayout.createSequentialGroup()
                         .addComponent(noButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(yesButton))
-                    .addComponent(panelPassportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(panelPassportNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(mrzPictureComparison, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
         panelResultsPageLayout.setVerticalGroup(
             panelResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResultsPageLayout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addComponent(mrzPictureComparison, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(panelPassportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
@@ -687,37 +709,7 @@ public class PassportCheck extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PassportCheck.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PassportCheck.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PassportCheck.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PassportCheck.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PassportCheck().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
@@ -745,6 +737,7 @@ public class PassportCheck extends javax.swing.JFrame {
     private javax.swing.JLabel mrzLineOne;
     private javax.swing.JLabel mrzPassportNumber;
     private javax.swing.JLabel mrzPersonalNumber;
+    private javax.swing.JLabel mrzPictureComparison;
     private javax.swing.JComboBox<String> nationalityInput;
     private javax.swing.JLabel nationalityLabel;
     private javax.swing.JButton noButton;
