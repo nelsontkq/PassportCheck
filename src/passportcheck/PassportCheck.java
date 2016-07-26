@@ -105,12 +105,10 @@ public class PassportCheck extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(655, 355));
 
-        mainPanel.setBackground(new java.awt.Color(240, 240, 240));
         mainPanel.setForeground(new java.awt.Color(240, 240, 240));
         mainPanel.setLayout(new java.awt.CardLayout());
 
         panelCandidateInput.setBackground(new java.awt.Color(255, 255, 255));
-        panelCandidateInput.setForeground(new java.awt.Color(0, 0, 0));
 
         surnameLabel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
         surnameLabel.setText("Surname");
@@ -147,51 +145,36 @@ public class PassportCheck extends javax.swing.JFrame {
         personalNumberLabel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
         personalNumberLabel.setText("Personal number");
 
-        surnameInput.setBackground(new java.awt.Color(255, 255, 255));
-        surnameInput.setForeground(new java.awt.Color(0, 0, 0));
         surnameInput.setText("Testerson");
         surnameInput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
 
-        givenNameInput.setBackground(new java.awt.Color(255, 255, 255));
-        givenNameInput.setForeground(new java.awt.Color(0, 0, 0));
         givenNameInput.setText("Testy McTesting");
         givenNameInput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
 
         dateOfBirthInput.setDocument(new JTextFieldLimit(10));
-        dateOfBirthInput.setBackground(new java.awt.Color(255, 255, 255));
-        dateOfBirthInput.setForeground(new java.awt.Color(0, 0, 0));
         dateOfBirthInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         dateOfBirthInput.setText("01/01/1991");
         dateOfBirthInput.setCaretColor(new java.awt.Color(255, 255, 255));
         PromptSupport.setPrompt("DD/MM/YYYY", dateOfBirthInput);
 
         passportNumberInput.setDocument(new JTextFieldLimit(9));
-        passportNumberInput.setBackground(new java.awt.Color(255, 255, 255));
-        passportNumberInput.setForeground(new java.awt.Color(0, 0, 0));
         passportNumberInput.setText("123456789");
         passportNumberInput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
 
-        nationalityInput.setBackground(new java.awt.Color(255, 255, 255));
         nationalityInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Cook Islands", "Costa Rica", "Cï¿½te d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic People's Republic of Korea", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faeroe Islands", "Fiji", "Finland", "France", "France - Metropolitan", "French Guiana", "French Polynesia", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and McDonald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Republic of", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands, Kingdom of the", "Netherlands Antilles", "Neutral Zone", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Republic of Korea", "Republic of Moldova", "Réunion", "Romania", "Russian Federation", "Rwanda", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Island", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan Province of China", "Tajikistan", "Thailand", "The former Yugoslav Republic of Macedonia", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom - Citizen", "United Kingdom -Dependent territories citizen", "United Kingdom -National (overseas)", "United Kingdom -Overseas citizen", "United Kingdom -Protected Person", "United Kingdom -Subject", "United Republic of Tanzania", "United States of America", "United States of America Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Viet Nam", "Virgin Islands (Great Britian)", "Virgin Islands (United States)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Zaire", "Zambia", "Zimbabwe" }));
 
-        countryInput.setBackground(new java.awt.Color(255, 255, 255));
         countryInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Cook Islands", "Costa Rica", "Cï¿½te d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic People's Republic of Korea", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faeroe Islands", "Fiji", "Finland", "France", "France - Metropolitan", "French Guiana", "French Polynesia", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and McDonald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Republic of", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands, Kingdom of the", "Netherlands Antilles", "Neutral Zone", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Republic of Korea", "Republic of Moldova", "Réunion", "Romania", "Russian Federation", "Rwanda", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Island", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan Province of China", "Tajikistan", "Thailand", "The former Yugoslav Republic of Macedonia", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom - Citizen", "United Kingdom -Dependent territories citizen", "United Kingdom -National (overseas)", "United Kingdom -Overseas citizen", "United Kingdom -Protected Person", "United Kingdom -Subject", "United Republic of Tanzania", "United States of America", "United States of America Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Viet Nam", "Virgin Islands (Great Britian)", "Virgin Islands (United States)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Zaire", "Zambia", "Zimbabwe" }));
         countryInput.setToolTipText("");
 
-        genderInput.setBackground(new java.awt.Color(255, 255, 255));
         genderInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Male", "Female" }));
 
         expiryInput.setDocument(new JTextFieldLimit(10));
-        expiryInput.setBackground(new java.awt.Color(255, 255, 255));
-        expiryInput.setForeground(new java.awt.Color(0, 0, 0));
         expiryInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         expiryInput.setText("20/02/2020");
         expiryInput.setCaretColor(new java.awt.Color(255, 255, 255));
         PromptSupport.setPrompt("DD/MM/YYYY", expiryInput);
 
         personalNumberInput.setDocument(new JTextFieldLimit(16));
-        personalNumberInput.setBackground(new java.awt.Color(255, 255, 255));
-        personalNumberInput.setForeground(new java.awt.Color(0, 0, 0));
         personalNumberInput.setText("<<<<<<<<<<<<<<01");
         personalNumberInput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(122, 122, 122)));
 
@@ -273,68 +256,55 @@ public class PassportCheck extends javax.swing.JFrame {
 
         mainPanel.add(panelCandidateInput, "panelOne");
 
-        panelResultsPage.setBackground(new java.awt.Color(240, 240, 240));
         panelResultsPage.setForeground(new java.awt.Color(240, 240, 240));
 
         panelPassportNumber.setBackground(new java.awt.Color(204, 204, 204));
 
         mrzLineOne.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzLineOne.setForeground(new java.awt.Color(0, 0, 0));
         mrzLineOne.setText("P<GBRTESTERSON<<TESTY<MCTESTING<<<<<<<<<<<<<");
         mrzLineOne.setFocusable(false);
         mrzLineOne.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         mrzPassportNumber.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzPassportNumber.setForeground(new java.awt.Color(0, 0, 0));
         mrzPassportNumber.setText("123456789");
 
         mrzChecksumOne.setBackground(new java.awt.Color(255, 153, 102));
         mrzChecksumOne.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzChecksumOne.setForeground(new java.awt.Color(0, 0, 0));
         mrzChecksumOne.setText("1");
         mrzChecksumOne.setOpaque(true);
 
         mrzCountry.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzCountry.setForeground(new java.awt.Color(0, 0, 0));
         mrzCountry.setText("GBR");
 
         mrzDateOfBirth.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzDateOfBirth.setForeground(new java.awt.Color(0, 0, 0));
         mrzDateOfBirth.setText("840101");
 
         mrzChecksumTwo.setBackground(new java.awt.Color(255, 153, 102));
         mrzChecksumTwo.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzChecksumTwo.setForeground(new java.awt.Color(0, 0, 0));
         mrzChecksumTwo.setText("2");
         mrzChecksumTwo.setOpaque(true);
 
         mrzGender.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzGender.setForeground(new java.awt.Color(0, 0, 0));
         mrzGender.setText("M");
 
         mrzExpiryDate.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzExpiryDate.setForeground(new java.awt.Color(0, 0, 0));
         mrzExpiryDate.setText("200101");
 
         mrzChecksumThree.setBackground(new java.awt.Color(255, 153, 102));
         mrzChecksumThree.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzChecksumThree.setForeground(new java.awt.Color(0, 0, 0));
         mrzChecksumThree.setText("3");
         mrzChecksumThree.setOpaque(true);
 
         mrzPersonalNumber.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzPersonalNumber.setForeground(new java.awt.Color(0, 0, 0));
         mrzPersonalNumber.setText("<<<<<<<<<<<<<<");
 
         mrzChecksumFour.setBackground(new java.awt.Color(255, 153, 102));
         mrzChecksumFour.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzChecksumFour.setForeground(new java.awt.Color(0, 0, 0));
         mrzChecksumFour.setText("0");
         mrzChecksumFour.setOpaque(true);
 
         mrzChecksumFive.setBackground(new java.awt.Color(255, 153, 102));
         mrzChecksumFive.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        mrzChecksumFive.setForeground(new java.awt.Color(0, 0, 0));
         mrzChecksumFive.setText("0");
         mrzChecksumFive.setOpaque(true);
 
@@ -387,7 +357,6 @@ public class PassportCheck extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Do the highlighted check digits above match the original passport?");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -401,12 +370,12 @@ public class PassportCheck extends javax.swing.JFrame {
         });
 
         try {
-            File path = new File(PassportCheck.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+            String path = "./resources/";
             BufferedImage mrzImage = new BufferedImage(82, 484, BufferedImage.TYPE_INT_RGB);
             mrzImage = ImageIO.read(new File(path, "mrz.jpg"));
             ImageIcon icon = new ImageIcon(mrzImage);
             mrzPictureComparison.setIcon(icon);
-        } catch (IOException | URISyntaxException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(PassportAuthenticator.class.getName()).log(Level.SEVERE, null, ex);
         }
         mrzPictureComparison.setMinimumSize(new java.awt.Dimension(82, 484));

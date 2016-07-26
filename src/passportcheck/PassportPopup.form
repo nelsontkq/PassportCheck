@@ -39,7 +39,7 @@
     <Component class="javax.swing.JLabel" name="passportAuthenticated">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JLabel(new ImageIcon(passportImage))"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="BufferedImage passportImage = null;&#xa;try {&#xa;    File path = new File(PassportCheck.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());&#xa;    passportImage = ImageIO.read(new File(path, &quot;passportAuthenticated.jpg&quot;));&#xa;}  catch (IOException | URISyntaxException ex) {&#xa;            Logger.getLogger(PassportAuthenticator.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="BufferedImage passportImage = null;&#xa;try {&#xa;    String path = &quot;./resources/&quot;;&#xa;    passportImage = ImageIO.read(new File(path, &quot;passportAuthenticated.jpg&quot;));&#xa;}  catch (IOException ex) {&#xa;            Logger.getLogger(PassportAuthenticator.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }"/>
       </AuxValues>
     </Component>
   </SubComponents>

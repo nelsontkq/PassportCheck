@@ -39,9 +39,9 @@ public class PassportPopup extends javax.swing.JFrame {
 
         BufferedImage passportImage = null;
         try {
-            File path = new File(PassportCheck.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+            String path = "./resources/";
             passportImage = ImageIO.read(new File(path, "passportAuthenticated.jpg"));
-        }  catch (IOException | URISyntaxException ex) {
+        }  catch (IOException ex) {
             Logger.getLogger(PassportAuthenticator.class.getName()).log(Level.SEVERE, null, ex);
         }
         passportAuthenticated = new JLabel(new ImageIcon(passportImage));

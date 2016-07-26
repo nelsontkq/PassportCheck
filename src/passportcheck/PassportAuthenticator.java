@@ -24,16 +24,15 @@ public class PassportAuthenticator {
         try {
             BufferedImage passport = null;
             BufferedImage tick = null;
-            
-            File path = new File(PassportCheck.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+            String path = "./resources/";
 
-            passport = ImageIO.read(new File(path, "\\passportcheck\\passport.jpg"));
+            passport = ImageIO.read(new File(path, "passport.jpg"));
             
             BufferedImage combined = new BufferedImage(passport.getWidth(), 
                     passport.getHeight(), BufferedImage.TYPE_INT_RGB);
             int size = Math.min(passport.getHeight(), passport.getWidth())/2;
             
-            tick = Thumbnails.of(new File(path, "\\passportcheck\\tick.png"))
+            tick = Thumbnails.of(new File(path, "tick.png"))
                     .size(size, size)
                     .asBufferedImage();
             
@@ -44,7 +43,7 @@ public class PassportAuthenticator {
             
             ImageIO.write(combined, "JPG", new File(path, "passportAuthenticated.jpg"));
             
-        } catch (IOException | URISyntaxException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(PassportAuthenticator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

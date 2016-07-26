@@ -131,18 +131,18 @@ public class CropImage extends javax.swing.JFrame implements MouseListener, Mous
 public void start()
 {
             try {
-                File path = new File(PassportCheck.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-                BufferedImage passport = ImageIO.read(new File(path, "\\passportcheck\\passport.jpg"));
+                String path = "./resources/";
+                BufferedImage passport = ImageIO.read(new File(path, "passport.jpg"));
                 
                 
-                ImagePanel im=new ImagePanel(path.toString() + "\\passportcheck\\passport.jpg");
+                ImagePanel im=new ImagePanel(path + "passport.jpg");
                 add(im);
                 setSize(passport.getWidth(), passport.getHeight() + 50);
                 setVisible(true);
                 addMouseListener(this);
                 addMouseMotionListener( this );
                 setDefaultCloseOperation(EXIT_ON_CLOSE);
-            } catch (URISyntaxException | IOException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(CropImage.class.getName()).log(Level.SEVERE, null, ex);
             }
 }
@@ -158,9 +158,8 @@ public void draggedScreen()throws Exception
     try {
         img = robot.createScreenCapture(new Rectangle(c1, c2,w,h));
     
-    
-        File path = new File(PassportCheck.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-        File save_path=new File(path, "\\mrz.jpg");
+        String path = "./resources/";
+        File save_path=new File(path, "mrz.jpg");
         ImageIO.write(img, "JPG", save_path);
 
         System.out.println(save_path.getPath());
