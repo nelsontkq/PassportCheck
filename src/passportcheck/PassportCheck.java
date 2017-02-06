@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package passportcheck;
 
 import java.awt.CardLayout;
@@ -29,6 +24,7 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  * @author ntko
  * TODO: - add passport MRZ crop tool for second window
  *       - passport PDF to JPG then authenticated passport back to PDF
+ *       - image recognition of letters?
  */
 public class PassportCheck extends javax.swing.JFrame {
     String surname = "";

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package passportcheck;
 
 /**
@@ -12,7 +7,6 @@ package passportcheck;
 public class ChecksumCalculator {
     public int Checksum(String input) {
         String upperCaseInput = input.toUpperCase();
-        
         Character[] charArray = upperCaseInput.chars()
                                  .mapToObj(c -> (char)c)
                                  .toArray(Character[]::new);
@@ -34,7 +28,7 @@ public class ChecksumCalculator {
                     break;
             }
             if(Character.isLetter(charArray[i])){
-                number = (int) charArray[i] - 45; // A = 65 in ASCII. Check digit calc requires it to be 10.
+                number = (int) charArray[i] - 45; // A = 65 in ASCII/Unicode. Check digit calc requires it to be 10.
             }
             else if(charArray[i] == '<'){
                 number = 0;
